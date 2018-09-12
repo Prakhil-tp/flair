@@ -1,2 +1,2 @@
 # flair
-A content recommended system
+> A content recommender engine
