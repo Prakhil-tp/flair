@@ -1,2 +1,2 @@
-# flare
+# flair
 A content recommended system
