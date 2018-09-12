@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-
+import ContentPage from './components/ContentPage';
 class App extends Component {
-  render() {
-    return (
-      <div>
-        <h1>home</h1>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div>
+                <ContentPage />
+            </div>
+        );
+    }
 }
 
 export default App;
