@@ -8,7 +8,7 @@ import avatar from '../images/avatar2.jpg';
 
 
 class NavBar extends Component {
-    // This component will act as core ui view which has a navbar and the all the recommended contents.
+    // Nav bar contains the title, search bar and the avatar logo 
     render() {
         return (
             <AppBar position="static">
@@ -20,13 +20,17 @@ class NavBar extends Component {
                         //value={this.state.value}
                        // onChange={(newValue) => this.setState({ value: newValue })}
                        // onRequestSearch={() => doSomethingWith(this.state.value)}
+                       placeholder = 'Start by searching for your favourite movie'
                        style={{
                         margin: '0 auto',
-                        width: '60%'
+                        width:'60%',
+                        maxWidth: '60%',
+                        backgroundColor: '#fefefe',
                       }}
                     />
                     <Avatar alt="Remy Sharp" src={avatar} />
                 </Toolbar>
+                
             </AppBar>
         );
     }

@@ -9,7 +9,7 @@ import './styles/index.css';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main : '#263238',
+      main : '#6200ee',
     },
     secondary: deepPurple,
   },
