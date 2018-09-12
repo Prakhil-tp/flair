@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+import {
+    AppBar,
+    Toolbar,
+    Typography,
+    Avatar,
+} from '@material-ui/core';
 import SearchBar from 'material-ui-search-bar';
-import Avatar from '@material-ui/core/Avatar';
-import avatar from '../images/avatar2.jpg';
+import avatar from '../../assets/images/avatar2.jpg';
 
 
 class NavBar extends Component {
