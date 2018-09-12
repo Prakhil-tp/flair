@@ -1,4 +1,4 @@
-# PROJECT BLAH BLAH
+# FLAIR
 
 ## Requirements
 
