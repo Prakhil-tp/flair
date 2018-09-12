@@ -3,14 +3,12 @@ import ReactDOM from 'react-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { deepPurple } from '@material-ui/core/colors';
 import registerServiceWorker from './registerServiceWorker';
-import App from './App';
+import MainApp from './MainApp';
 import './styles/index.css';
 
 const theme = createMuiTheme({
   palette: {
-    primary: {
-      main : '#6200ee',
-    },
+    primary: { main : '#333', },
     secondary: deepPurple,
   },
   status: {
@@ -20,7 +18,7 @@ const theme = createMuiTheme({
 
 ReactDOM.render(
   <MuiThemeProvider theme={theme} >
-    <App />
+    <MainApp />
   </MuiThemeProvider>, document.getElementById('root'),
 );
 registerServiceWorker();
