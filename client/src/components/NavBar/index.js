@@ -27,8 +27,7 @@ class NavBar extends Component {
                         margin: '0 auto',
                         width:'60%',
                         maxWidth: '60%',
-                        backgroundColor: '#616161',
-                        textColor:'#fefefe',
+                        backgroundColor: '#f5f5f5',
                       }}
                     />
                     <Avatar alt="Remy Sharp" src={avatar} />

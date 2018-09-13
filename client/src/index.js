@@ -8,7 +8,7 @@ import './styles/index.css';
 
 const theme = createMuiTheme({
   palette: {
-    primary: { main : '#333', },
+    primary: { main : '#fefefe', },
     secondary: deepPurple,
   },
   status: {
