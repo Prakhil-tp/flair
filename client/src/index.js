@@ -8,12 +8,10 @@ import './styles/_index.css';
 
 const theme = createMuiTheme({
   palette: {
-    primary: { main : '#fefefe', },
-    secondary: deepPurple,
-  },
-  status: {
-    danger: 'orange',
-  },
+    primary: { main : '#fefefe' },
+    secondary: { main : '#dd5e64' },
+    status: { danger: 'orange' },
+  }
 });
 
 ReactDOM.render(
