@@ -1,0 +1,15 @@
+.card-space{
+  padding: 20px 0px 20px 50px;
+  background-color: #eee;
+}
+.white-space{
+  width: 200px;
+  height: 250px;
+}
+.title {
+  padding: 20px 0px 1px 40px;
+  background-color: #eee;  
+  color: #333;
+  /* font-size: 10px; */
+  font-family: 'Roboto', sans-serif;
+}

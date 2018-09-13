@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppBar, Button, Toolbar, Typography, Avatar, Card, CardActionArea, CardMedia, CardContent, CardActions } from '@material-ui/core';
+import { AppBar, Button, Toolbar, Typography, Avatar, Card, CardActionArea, CardMedia, CardContent, CardActions, Grid } from '@material-ui/core';
 import avatar from '../../assets/images/avatar2.jpg';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -18,19 +18,21 @@ class MovieCard extends Component {
 
   render() {
     return (
-      <Card style={{ height:250,width:200 }} >
-      <CardMedia
-          component="img"
-          height = "200"
-          image={avatar}
-          title="Contemplative Reptile"
-      />
-      <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-      </CardActions>
-    </Card>
+      <Grid item >
+        <Card style={{ height:250,width:170 }} >
+        <CardMedia
+            component="img"
+            height = "200"
+            image={avatar}
+            title="Contemplative Reptile"
+        />
+        <CardActions>
+          <Button size="small" color="primary">
+            Share
+          </Button>
+        </CardActions>
+      </Card>
+    </Grid>
     );
   }
 }
