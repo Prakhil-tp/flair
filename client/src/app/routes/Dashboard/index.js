@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import MovieCard from '../../../components/MovieCard';
+import '../../../styles/pages/_dashboard.css';
 
 class Dashboard extends Component {
   render(){
     return(
-      <div>
+      <div className="dashboard">
         <MovieCard />
       </div>
     );

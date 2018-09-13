@@ -18,17 +18,15 @@ class MovieCard extends Component {
 
   render() {
     return (
-      <Card style={{ height:250,width:250 }} >
-      <CardContent>
+      <Card style={{ height:250,width:200 }} >
       <CardMedia
           component="img"
-          height = "150"
+          height = "200"
           image={avatar}
           title="Contemplative Reptile"
-        />
-      </CardContent>
+      />
       <CardActions>
-      <Button size="small" color="primary">
+        <Button size="small" color="primary">
           Share
         </Button>
       </CardActions>

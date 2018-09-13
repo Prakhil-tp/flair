@@ -8,7 +8,7 @@ import {
 import SearchBar from 'material-ui-search-bar';
 import avatar from '../../assets/images/avatar2.jpg';
 import logo from '../../assets/flairLogo.png';
-import '../../styles/NavBar.css';
+import '../../styles/components/_navbar.css';
 
 
 class NavBar extends Component {

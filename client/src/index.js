@@ -4,7 +4,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { deepPurple } from '@material-ui/core/colors';
 import registerServiceWorker from './registerServiceWorker';
 import MainApp from './MainApp';
-import './styles/index.css';
+import './styles/_index.css';
 
 const theme = createMuiTheme({
   palette: {
