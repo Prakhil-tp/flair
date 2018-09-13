@@ -7,6 +7,8 @@ import {
 } from '@material-ui/core';
 import SearchBar from 'material-ui-search-bar';
 import avatar from '../../assets/images/avatar2.jpg';
+import logo from '../../assets/flairLogo.png';
+import '../../styles/NavBar.css';
 
 
 class NavBar extends Component {
@@ -15,9 +17,7 @@ class NavBar extends Component {
         return (
             <AppBar position="static">
                 <Toolbar>
-                    <Typography variant="title" color="inherit" >
-                        Flair
-                    </Typography>
+                    <img src={logo} className="logo" />
                     <SearchBar
                         //value={this.state.value}
                        // onChange={(newValue) => this.setState({ value: newValue })}
