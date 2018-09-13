@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
-import { AppBar, Button, Toolbar, Typography, Avatar, Card, CardActionArea, CardMedia, CardContent, CardActions, Grid } from '@material-ui/core';
-import avatar from '../../assets/images/avatar2.jpg';
+import { AppBar, Button, Toolbar, Typography, Avatar, Card, CardActionArea, CardMedia, CardContent, CardActions, Grid, IconButton } from '@material-ui/core';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import avengers from '../../assets/images/Avengers.jpg';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
-  card: {
-    maxWidth: 345,
-  },
-  media: {
-    // ⚠️ object-fit is not supported by IE11.
-    objectFit: 'cover',
-  },
+  card: { maxWidth: 345 },
+  media: { objectFit: 'cover'},
 };
 
 class MovieCard extends Component {
@@ -19,17 +15,17 @@ class MovieCard extends Component {
   render() {
     return (
       <Grid item >
-        <Card style={{ height:250,width:170 }} >
+        <Card style={{ height:250,width:172 }} >
         <CardMedia
             component="img"
             height = "200"
-            image={avatar}
+            image={avengers}
             title="Contemplative Reptile"
         />
         <CardActions>
-          <Button size="small" color="primary">
-            Share
-          </Button>
+          <IconButton color="secondary" aria-label="Add to favorites">
+            <FavoriteIcon  />
+          </IconButton>
         </CardActions>
       </Card>
     </Grid>
