@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-import { Divider, Grid, Typography  } from '@material-ui/core';
+import { Divider, Grid } from '@material-ui/core';
 import '../../styles/components/_cardarea.css';
 
 class CardArea extends Component {

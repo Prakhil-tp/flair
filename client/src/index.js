@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { deepPurple } from '@material-ui/core/colors';
 import registerServiceWorker from './registerServiceWorker';
 import MainApp from './MainApp';
 import './styles/_index.css';
@@ -10,7 +9,6 @@ const theme = createMuiTheme({
   palette: {
     primary: { main : '#fefefe' },
     secondary: { main : '#dd5e64' },
-    status: { danger: 'orange' },
   }
 });
 

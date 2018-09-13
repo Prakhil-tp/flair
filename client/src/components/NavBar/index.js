@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
     AppBar,
     Toolbar,
-    Typography,
     Avatar,
 } from '@material-ui/core';
 import SearchBar from 'material-ui-search-bar';
@@ -17,7 +16,7 @@ class NavBar extends Component {
         return (
             <AppBar position="static">
                 <Toolbar>
-                    <img src={logo} className="logo" />
+                    <img src={logo} className="logo" alt="logo"/>
                     <SearchBar
                         //value={this.state.value}
                        // onChange={(newValue) => this.setState({ value: newValue })}

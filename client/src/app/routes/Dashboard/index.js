@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Divider } from '@material-ui/core';
 import MovieCard from '../../../components/MovieCard';
+import TestCard from '../../../components/TestCard';
 import CardArea from '../../../components/CardArea';
 import '../../../styles/pages/_dashboard.css';
 
@@ -11,6 +11,8 @@ class Dashboard extends Component {
         <CardArea title="POPULAR MOVIES">
           <MovieCard />
           <MovieCard />
+          <MovieCard />
+          <TestCard />
         </CardArea>
       </div>
     );
