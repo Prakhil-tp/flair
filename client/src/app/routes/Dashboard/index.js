@@ -8,7 +8,7 @@ class Dashboard extends Component {
   render(){
     return(
       <div className="dashboard">
-        <CardArea>
+        <CardArea title="POPULAR MOVIES">
           <MovieCard />
           <MovieCard />
         </CardArea>
