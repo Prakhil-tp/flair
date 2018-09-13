@@ -5,10 +5,10 @@ import '../../styles/components/_cardarea.css';
 class CardArea extends Component {
   render(){
     return(
-      <div >
+      <div className="main">
         <Divider />
         <div className="title">
-          <h4>POPULAR MOVIES</h4>
+          <h4>{this.props.title}</h4>
         </div>
         <div className="card-space">
             <Grid container flex-direction="row" spacing={8}>
