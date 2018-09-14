@@ -2,66 +2,48 @@ import React,{Component} from 'react';
 import { 
   Card,
   CardMedia,
-  CardActions,
   Grid,
   IconButton,
   Tooltip,
-  CardContent,
-  Typography,
 } from '@material-ui/core';
-import { red, lightBlue} from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import WatchLater from '@material-ui/icons/WatchLater';
-import OfflinePin from '@material-ui/icons/OfflinePin';
-import avengers from '../../assets/images/Avengers.jpg';
-import { withStyles, createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import '../../styles/components/_testcard.css';
 
 const styles = {
   media: {
-    height:280,
-    width:176,
+     height:'100%',
     display:'flex',
     alignItems:'flex-end'
   },
   card: {
      position: 'relative',
+     height:220,
+     width:150,
   },
   overlay: {
      position: 'absolute',
-    //  top: '20px',
-     bottom:'20px',
-     left: '0px',
-     color: 'black',
-     background: 'rgba(255,255,255,0.8)',
+     bottom:'2%',
+     background: 'rgba(200,200,200,0.5)',
      width:176,
   }
 }
-const cardTheme = createMuiTheme({ 
-  palette: {
-    primary: red,
-    secondary: lightBlue,
-    error: { main: '#2e2e2e'}
-  } 
-});
 
 class TestCard extends Component {
   constructor(props){
     super(props);
     this.state = {
-      favIconColor:'disabled',
-      watchLaterIconColor:'disabled',
-      watchedIconColor:'disabled'
+      favoriteColor: '#00000080',
+      watchLaterColor: '#00000080',
+      watchedIconColor: '#00000080'
     };
   }
   render(){
     return(
-      <Grid item >
+      <Grid  item >
+        <div className="movie-card">
         <Card style={styles.card}>
-          <CardMedia image={avengers} style={styles.media}/>
+          <CardMedia image={this.props.image} style={styles.media}/>
           <div style={styles.overlay}>
             <div className="button-area">
-              <MuiThemeProvider theme={cardTheme}>
                 <Grid container flex-direction="row" spacing={0}>
                   <Grid item>
                     <Tooltip title="favorite">
@@ -69,14 +51,14 @@ class TestCard extends Component {
                         aria-label="Add to favorites"
                         onClick={
                           (e)=>{
-                            (this.state.favIconColor=== 'disabled')?
-                              this.setState({favIconColor:'primary'})
+                            (this.state.favoriteColor === '#00000080')?
+                              this.setState({favoriteColor: '#FF1744'})
                               :
-                              this.setState({favIconColor:'disabled'})
+                              this.setState({favoriteColor: '#00000080'})
                           }
                         }
                       >
-                        <FavoriteIcon color={this.state.favIconColor} />
+                        <i className="material-icons" style={{color: this.state.favoriteColor}}>favorite</i>
                       </IconButton>
                     </Tooltip>
                   </Grid>
@@ -86,14 +68,14 @@ class TestCard extends Component {
                           aria-label="Add to watch later"
                           onClick={
                             (e)=>{
-                              (this.state.watchLaterIconColor=== 'disabled')?
-                                this.setState({watchLaterIconColor:'secondary'})
+                              (this.state.watchLaterColor === '#00000080')?
+                                this.setState({watchLaterColor: '#3d5afe'})
                                 :
-                                this.setState({watchLaterIconColor:'disabled'})
+                                this.setState({watchLaterColor: '#00000080'})
                             }
                           }
                         >
-                          <WatchLater color={this.state.watchLaterIconColor} />
+                          <i className="material-icons" style={{color:this.state.watchLaterColor}}>watch_later</i>
                         </IconButton>
                     </Tooltip>
                   </Grid>
@@ -103,22 +85,32 @@ class TestCard extends Component {
                           aria-label="Add to watched"
                           onClick={
                             (e)=>{
-                              (this.state.watchedIconColor=== 'disabled')?
-                                this.setState({watchedIconColor:'error'})
+                              (this.state.watchedIconColor === '#00000080')?
+                                this.setState({watchedIconColor: 'white'})
                                 :
-                                this.setState({watchedIconColor:'disabled'})
+                                this.setState({watchedIconColor: '#00000080'})
                             }
                           }
                         >
-                          <OfflinePin color={this.state.watchedIconColor} />
+                            <i className="material-icons" style={{color:this.state.watchedIconColor}}>offline_pin</i>
                         </IconButton>
                     </Tooltip>
                   </Grid>
                 </Grid>
-              </MuiThemeProvider>
             </div>
           </div>
+          <div className="rating">
+            <p>{this.props.rating}</p>
+            <i className="material-icons">grade</i>
+          </div>
         </Card>
+        </div>
+        <div className="card-content">
+          <p className="movie-title" >{this.props.title}</p>
+        </div>
+        <div className="movie-genre">
+          <p>{this.props.genre}</p>
+        </div>
       </Grid>
     );
   }
