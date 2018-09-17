@@ -1,21 +1,7 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
-
-
-class Genre(models.Model):
-    """
-    Class that represents the genre of the movie.
-    """
-    name = models.CharField(max_length=30)
-    description = models.CharField(max_length=100,default=None,blank=True)
-
-
-class Actor(models.Model):
-    """
-    Class that represents the actor details.
-    """
-    name = models.CharField(max_length=100)
 
 
 class Movie(models.Model):
@@ -23,15 +9,58 @@ class Movie(models.Model):
     Class that represents the Movie details.
     """
     title = models.CharField(max_length=100)
-    genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
-    rating = models.IntegerField()
+    imbdID = models.CharField(max_length=15)
+    imbVotes = models.IntegerField()
+    rated = models.CharField(max_length=4)
     poster = models.URLField()
-    actor = models.CharField(max_length=100)
+    director = models.CharField(max_length=40)
+    year = models.CharField(max_length=4)
+    plot = models.TextField()
+    language = models.CharField(max_length=15)
+    country = models.CharField(max_length=20)
+    production = models.CharField(max_length=20)
+
+
+class MovieGenre(models.Model):
+    movie = models.ForeignKey(Movie,on_delete=models.CASCADE)
+    genre = models.CharField(max_length=10)
 
 
 class Cast(models.Model):
     """
     Class that represents the cast that appeared in a movie.
     """
-    actor = models.ForeignKey(Actor)
     movie = models.ForeignKey(Movie)
+    actor = models.CharField(max_length=40)
+
+
+class MovieWriter(models.Model):
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    writer = models.CharField(max_length=40)
+
+
+class Ratings(models.Model):
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    name = models.CharField(max_length=30)
+    rating = models.CharField(max_length=5)
+
+
+class Recommendation(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    strength = models.IntegerField(default=1)
+
+
+class Favourite(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+
+
+class WatchLater(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+
+
+class Watched(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
