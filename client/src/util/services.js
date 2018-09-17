@@ -16,7 +16,7 @@ function LocalStorageService(method, key, value) {
   // http service function
   const HttpService = function httpService() {
 
-    const baseURL = 'http://localhost:8000/';
+    const baseURL = 'http://localhost:8000';
   
     const x = {};
   
