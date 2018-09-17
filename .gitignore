@@ -97,3 +97,6 @@ tmtagsHistory
 data
 
 package-lock.json
+firebase-debug.log
+build/
+.firebase
