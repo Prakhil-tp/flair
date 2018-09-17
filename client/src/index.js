@@ -10,6 +10,11 @@ const theme = createMuiTheme({
     primary: { main : '#fefefe' },
     secondary: { main : '#dd5e64' },
   }
+  // palette: {
+  //   primary: { main : '#141414' },
+  //   secondary: { main : '#dd5e64' },
+  // }
+
 });
 
 ReactDOM.render(
