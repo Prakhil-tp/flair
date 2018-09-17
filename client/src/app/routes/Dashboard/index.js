@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import MovieCard from '../../../components/MovieCard';
 import TestCard from '../../../components/TestCard';
 import CardArea from '../../../components/CardArea';
 import '../../../styles/pages/_dashboard.css';
