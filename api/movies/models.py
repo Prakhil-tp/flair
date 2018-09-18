@@ -30,7 +30,7 @@ class Cast(models.Model):
     """
     Class that represents the cast that appeared in a movie.
     """
-    movie = models.ForeignKey(Movie)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     actor = models.CharField(max_length=40)
 
 
@@ -39,7 +39,7 @@ class MovieWriter(models.Model):
     writer = models.CharField(max_length=40)
 
 
-class Ratings(models.Model):
+class Rating(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     name = models.CharField(max_length=30)
     rating = models.CharField(max_length=5)
