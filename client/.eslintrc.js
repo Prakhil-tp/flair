@@ -1,8 +1,12 @@
 module.exports = {
-    "extends": "airbnb",
-    "plugins": [
-        "react",
-        "jsx-ally",
-        "import"
-    ]
+    "extends": [
+        "airbnb",
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
+    "rules": {
+      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+      "no-mixed-spaces-and-tabs": [2, "smart-tabs"]
+    }
+
 };
