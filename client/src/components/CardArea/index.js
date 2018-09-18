@@ -1,7 +1,7 @@
 import React from 'react';
 import { Divider, Grid } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import '../../styles/components/_cardarea.css';
+// import '../../styles/components/_cardarea.css';
 
 const CardArea = (props) => {
   const { title, isLoading, children } = props;

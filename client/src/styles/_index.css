@@ -5,3 +5,12 @@ body {
   max-width: 100%;
   overflow-x: hidden;
 }
+
+/* components */
+@import './components/_cardarea.css';
+@import './components/_moviecard.css';
+@import './components/_navbar.css';
+
+
+/* pages */
+@import './pages/_dashboard.css'
