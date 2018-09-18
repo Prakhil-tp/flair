@@ -1,12 +1,29 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import TestCard from '../../../components/TestCard';
 import CardArea from '../../../components/CardArea';
 import '../../../styles/pages/_dashboard.css';
 
 class Dashboard extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+
+    }
+  }
+
+  
   render(){
+    const { searchLoading } = this.props;
     return(
       <div className="dashboard">
+        {
+          searchLoading? (
+            <CardArea />
+            ):
+            <div />
+        }
+        { searchLoading?<div style={{height:'40px', width:'auto'}} />:<div />}
         <CardArea title="POPULAR MOVIES">
           <TestCard 
             image="https://images-na.ssl-images-amazon.com/images/I/717QDxYBkbL._SY606_.jpg" 
@@ -25,17 +42,15 @@ class Dashboard extends Component {
             title="Knight and Day"
             genre="THRILLER"
             rating="4.4"
-           />
+          />
           <TestCard 
             image="https://m.media-amazon.com/images/M/MV5BMjM3NzQ5NDcxOF5BMl5BanBnXkFtZTgwNzM4MTQ5NTM@._V1_.jpg"
             title="The Nun"
             genre="HORROR"
             rating="4.7"
-           />
+          />
         </CardArea>
-        <div style={{height:'40px', width:'auto'}}>
-
-        </div>
+        <div style={{height:'40px', width:'auto'}} />
         <CardArea title="FAVORITE MOVIES">
           <TestCard 
             image="https://images-na.ssl-images-amazon.com/images/I/717QDxYBkbL._SY606_.jpg" 
@@ -54,16 +69,24 @@ class Dashboard extends Component {
             title="Knight and Day"
             genre="THRILLER"
             rating="4.4"
-           />
+          />
           <TestCard 
             image="https://m.media-amazon.com/images/M/MV5BMjM3NzQ5NDcxOF5BMl5BanBnXkFtZTgwNzM4MTQ5NTM@._V1_.jpg"
             title="The Nun"
             genre="HORROR"
             rating="4"
-           />
+          />
         </CardArea>
       </div>
     );
   }
 }
 export default Dashboard;
+
+Dashboard.defaultProps = {
+  searchLoading: false,
+}
+
+Dashboard.propTypes = {
+  searchLoading: PropTypes.bool,
+};
