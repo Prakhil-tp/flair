@@ -6,7 +6,6 @@ import {
   IconButton,
   Tooltip,
 } from '@material-ui/core';
-import '../../styles/components/_moviecard.css';
 
 const styles = {
   media: {
