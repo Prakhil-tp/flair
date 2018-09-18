@@ -1,3 +1,4 @@
+/* eslint-env browser */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
@@ -10,15 +11,10 @@ const theme = createMuiTheme({
     primary: { main : '#fefefe' },
     secondary: { main : '#dd5e64' },
   }
-  // palette: {
-  //   primary: { main : '#141414' },
-  //   secondary: { main : '#dd5e64' },
-  // }
-
 });
 
 ReactDOM.render(
-  <MuiThemeProvider theme={theme} >
+  <MuiThemeProvider theme={theme}>
     <MainApp />
   </MuiThemeProvider>, document.getElementById('root'),
 );
