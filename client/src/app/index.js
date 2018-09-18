@@ -9,25 +9,34 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      searchLoading:false
+      searchScreen:false,
+      searchLoading:true
     }
   }
 
   render(){
     const { match } = this.props;
-    const { searchLoading } = this.state;
+    const { searchScreen, searchLoading } = this.state;
     return(
       <div>
         <NavBar 
-          loadingTrue={()=>{this.setState({searchLoading:true})}}
-          loadingFalse={()=>{this.setState({searchLoading:false})}}
+          searchScreen={()=>{this.setState({searchScreen:true})}}
+          searchScreenFalse={()=>{this.setState({searchScreen:false})}}
+          searchLoadingTrue={()=>{this.setState({searchLoading:true})}}
+          searchLoadingFalse={()=>{this.setState({searchLoading:false})}}
         />
         <div>
           <Switch>
             <Route
               exact
               path={`${match.url}`}
-              render={(props)=><Dashboard {...props} searchLoading={searchLoading} />}
+              render={(props)=> (
+                <Dashboard
+                  {...props} 
+                  searchScreen={searchScreen}
+                  searchLoading={searchLoading}
+                />
+              )}
             />
             <Route exact path={`${match.url}profile`} component={UserProfile} />
           </Switch>
