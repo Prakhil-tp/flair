@@ -3,3 +3,6 @@
   width: 124px;
   height: 50px;
 }
+.logo_wrapper:focus{
+    outline: 0px solid transparent;
+}
