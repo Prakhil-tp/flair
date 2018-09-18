@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import TestCard from '../../../components/TestCard';
 import CardArea from '../../../components/CardArea';
 import '../../../styles/pages/_dashboard.css';
@@ -19,7 +20,13 @@ class Dashboard extends Component {
       <div className="dashboard">
         {
           searchLoading? (
-            <CardArea />
+            <CardArea isLoading title="SEARCH RESULTS">
+              <CircularProgress 
+                size={50} 
+                thickness={2} 
+                color="secondary" 
+              />
+            </CardArea>
             ):
             <div />
         }
@@ -85,7 +92,7 @@ export default Dashboard;
 
 Dashboard.defaultProps = {
   searchLoading: false,
-}
+};
 
 Dashboard.propTypes = {
   searchLoading: PropTypes.bool,
