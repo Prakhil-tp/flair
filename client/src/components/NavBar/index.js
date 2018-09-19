@@ -5,6 +5,7 @@ import {
     Avatar,
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
+import { isMobile } from 'react-device-detect';
 import SearchBar from 'material-ui-search-bar';
 import avatar from 'assets/images/avatar2.jpg';
 import logo from 'assets/flairLogo.png';
@@ -71,20 +72,27 @@ class NavBar extends Component {
             >
               <img src={logo} className="logo" alt="logo" />
             </div>
-            <SearchBar
-              value={searchValue}
-              onChange={this.handleValueChange}
-              onRequestSearch={this.handleSearch}
-              onKeyDown={this.onKeyPress}
-              placeholder='Start by searching for your favourite movie'
-              style={{
-                margin: '0 auto',
-                width:'60%',
-                maxWidth: '60%',
-                backgroundColor: '#eee',
-                boxShadow: '0px 0px 0px inset'
-              }}
-            />
+            <div style={{flexGrow: 1}} />
+            {
+              !isMobile? (
+                <SearchBar
+                  value={searchValue}
+                  onChange={this.handleValueChange}
+                  onRequestSearch={this.handleSearch}
+                  onKeyDown={this.onKeyPress}
+                  placeholder='Start by searching for your favourite movie'
+                  style={{
+                    margin: '0 auto',
+                    width:'60%',
+                    maxWidth: '60%',
+                    backgroundColor: '#eee',
+                    boxShadow: '0px 0px 0px inset'
+                  }}
+                />
+              ):
+                <div />
+            }
+            <div style={{flexGrow: 1}} />
             <Avatar alt="Remy Sharp" src={avatar} />
           </Toolbar>  
         </AppBar>
