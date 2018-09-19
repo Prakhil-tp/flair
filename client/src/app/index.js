@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import NavBar from 'components/NavBar';
 import Dashboard from './routes/Dashboard';
 import UserProfile from './routes/UserProfile';
-import NavBar from '../components/NavBar';
 
 class App extends Component {
   constructor(props){

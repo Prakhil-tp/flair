@@ -6,9 +6,9 @@ import {
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import SearchBar from 'material-ui-search-bar';
-import avatar from '../../assets/images/avatar2.jpg';
-import logo from '../../assets/flairLogo.png';
-import { HttpService } from '../../util/services';
+import avatar from 'assets/images/avatar2.jpg';
+import logo from 'assets/flairLogo.png';
+import { HttpService } from 'util/services';
 
 const httpService = HttpService();
 

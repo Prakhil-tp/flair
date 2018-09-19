@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import MovieCard from '../../../components/MovieCard';
-import CardArea from '../../../components/CardArea';
+import MovieCard from 'components/MovieCard';
+import CardArea from 'components/CardArea';
 import SearchResults from './components/SearchResults';
 
 
