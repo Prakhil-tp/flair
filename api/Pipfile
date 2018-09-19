@@ -6,6 +6,11 @@ name = "pypi"
 [packages]
 django = "*"
 djangorestframework = "*"
+"psycopg2" = "*"
+celery = "*"
+"bs4" = "*"
+requests = "*"
+redis = "*"
 
 [dev-packages]
 

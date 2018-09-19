@@ -9,21 +9,21 @@ class Movie(models.Model):
     Class that represents the Movie details.
     """
     title = models.CharField(max_length=100)
-    imbdID = models.CharField(max_length=15)
-    imbVotes = models.IntegerField()
-    rated = models.CharField(max_length=4)
+    imdbID = models.CharField(max_length=15)
+    # imbVotes = models.IntegerField()
     poster = models.URLField()
-    director = models.CharField(max_length=40)
-    year = models.CharField(max_length=4)
+    # director = models.CharField(max_length=40)
+    mid = models.CharField(max_length=20)
+    # year = models.CharField(max_length=4)
     plot = models.TextField()
     language = models.CharField(max_length=15)
-    country = models.CharField(max_length=20)
-    production = models.CharField(max_length=20)
+    # country = models.CharField(max_length=20)
+    #production = models.CharField(max_length=20)
 
 
 class MovieGenre(models.Model):
     movie = models.ForeignKey(Movie,on_delete=models.CASCADE)
-    genre = models.CharField(max_length=10)
+    genre = models.CharField(max_length=20)
 
 
 class Cast(models.Model):
