@@ -1,65 +1,52 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import MovieCard from 'components/MovieCard';
 import CardArea from 'components/CardArea';
 import SearchResults from './components/SearchResults';
 
 
-class Dashboard extends Component {
-  constructor(props){
-    super(props);
-    this.state={}
-  }
+const Dashboard = (props) => (
 
-  render(){
-    return(
-      <div className="dashboard">
-        <SearchResults {...this.props} />
-        <WhiteSpace {...this.props} />
-        <CardArea title="POPULAR MOVIES">
-          <MovieCard 
-            poster="https://images-na.ssl-images-amazon.com/images/I/717QDxYBkbL._SY606_.jpg" 
-            title="The Lord of the Rings: The Fellowship of the Ring"
-            genre="ACTION"
-            rating="4.8"
-          />
-          <MovieCard 
-            poster="https://i.imgur.com/NL57XsO.jpg"
-            title="Black Panther"
-            genre="DRAMA"
-            rating="3.4"
-          />
-          <MovieCard 
-            poster="https://i.pinimg.com/736x/2b/72/d3/2b72d3a848eb97c4e5834a6c31e0bb99.jpg"
-            title="Knight and Day"
-            genre="THRILLER"
-            rating="4.4"
-          />
-          <MovieCard 
-            poster="https://m.media-amazon.com/images/M/MV5BMjM3NzQ5NDcxOF5BMl5BanBnXkFtZTgwNzM4MTQ5NTM@._V1_.jpg"
-            title="The Nun"
-            genre="HORROR"
-            rating="4.7"
-          />
-        </CardArea>
-        <div style={{height:'40px', width:'auto'}} />
+  <div className="dashboard">
+    <SearchResults {...props} />
+    <WhiteSpace {...props} />
+    <CardArea title="POPULAR MOVIES">
+      <MovieCard 
+        poster="https://images-na.ssl-images-amazon.com/images/I/717QDxYBkbL._SY606_.jpg" 
+        title="The Lord of the Rings: The Fellowship of the Ring"
+        genre="ACTION"
+        rating="4.8"
+      />
+      <MovieCard 
+        poster="https://i.imgur.com/NL57XsO.jpg"
+        title="Black Panther"
+        genre="DRAMA"
+        rating="3.4"
+      />
+      <MovieCard 
+        poster="https://i.pinimg.com/736x/2b/72/d3/2b72d3a848eb97c4e5834a6c31e0bb99.jpg"
+        title="Knight and Day"
+        genre="THRILLER"
+        rating="4.4"
+      />
+      <MovieCard 
+        poster="https://m.media-amazon.com/images/M/MV5BMjM3NzQ5NDcxOF5BMl5BanBnXkFtZTgwNzM4MTQ5NTM@._V1_.jpg"
+        title="The Nun"
+        genre="HORROR"
+        rating="4.7"
+      />
+    </CardArea>
+    <div style={{height:'40px', width:'auto'}} />
 
-      </div>
-    );
-  }
-}
-export default Dashboard;
+  </div>
+);
 
-Dashboard.defaultProps = {
-  searchLoading: false,
-  searchScreen: false,
-};
-
-Dashboard.propTypes = {
-  searchLoading: PropTypes.bool,
-  searchScreen: PropTypes.bool,
-};
-
+const mapStateToProps = state => ({
+  searchScreen: state.SearchLoading.searchScreen,
+  searchLoading: state.SearchLoading.searchLoading
+})
+export default connect(mapStateToProps,{})(Dashboard);
 
 
 //whitespace
@@ -70,5 +57,9 @@ const WhiteSpace = (props) => {
   return <div />;
 }
 
-WhiteSpace.defaultProps = { searchScreen: false };
-WhiteSpace.propTypes = { searchScreen: PropTypes.bool };
+//prop validataion
+Dashboard.propTypes = {
+  searchScreen: PropTypes.bool.isRequired,
+  searchLoading: PropTypes.bool.isRequired
+};
+WhiteSpace.propTypes = { searchScreen: PropTypes.bool.isRequired };
