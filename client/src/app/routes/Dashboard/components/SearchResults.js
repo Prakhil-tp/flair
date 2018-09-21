@@ -29,16 +29,13 @@ const SearchResults = (props) => {
       </CardArea>
     );
   }
-  return(<div />);
+  return(<div />); 
 }
+
 export default SearchResults;
 
-SearchResults.defaultProps = {
-  searchLoading: false,
-  searchScreen: false,
-};
 
 SearchResults.propTypes = {
-  searchLoading: PropTypes.bool,
-  searchScreen: PropTypes.bool,
+  searchScreen: PropTypes.bool.isRequired,
+  searchLoading: PropTypes.bool.isRequired,
 };

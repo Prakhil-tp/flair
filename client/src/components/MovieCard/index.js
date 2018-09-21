@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import PropTypes from 'prop-types';
 import { 
   Card,
   CardMedia,
@@ -117,3 +118,10 @@ class MovieCard extends Component {
   }
 }
 export default MovieCard;
+
+MovieCard.propTypes = {
+  poster: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  rating: PropTypes.string.isRequired,
+  genre: PropTypes.string.isRequired
+}
