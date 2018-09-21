@@ -36,79 +36,81 @@ class MovieCard extends Component {
     };
   }
   render(){
+    const { favoriteColor, watchLaterColor, watchedIconColor } = this.state;
+    const { poster, rating, title, genre } = this.props;
     return(
-      <Grid  item >
+      <Grid item>
         <div className="movie-card">
-        <Card style={styles.card}>
-          <CardMedia image={this.props.image} style={styles.media}/>
-          <div style={styles.overlay}>
-            <div className="button-area">
+          <Card style={styles.card}>
+            <CardMedia image={poster} style={styles.media} />
+            <div style={styles.overlay}>
+              <div className="button-area">
                 <Grid container flex-direction="row" spacing={0}>
                   <Grid item>
                     <Tooltip title="favorite">
                       <IconButton 
                         aria-label="Add to favorites"
                         onClick={
-                          (e)=>{
-                            (this.state.favoriteColor === '#00000080')?
-                              this.setState({favoriteColor: '#FF1744'})
+                          () => {
+                            (favoriteColor === '#00000080') ?
+                              this.setState({ favoriteColor: '#FF1744' })
                               :
-                              this.setState({favoriteColor: '#00000080'})
+                              this.setState({ favoriteColor: '#00000080' });
                           }
                         }
                       >
-                        <i className="material-icons" style={{color: this.state.favoriteColor}}>favorite</i>
+                        <i className="material-icons" style={{color: favoriteColor}}>favorite</i>
                       </IconButton>
                     </Tooltip>
                   </Grid>
                   <Grid item>
                     <Tooltip title="watch later">
-                        <IconButton 
-                          aria-label="Add to watch later"
-                          onClick={
-                            (e)=>{
-                              (this.state.watchLaterColor === '#00000080')?
-                                this.setState({watchLaterColor: '#3d5afe'})
-                                :
-                                this.setState({watchLaterColor: '#00000080'})
-                            }
+                      <IconButton 
+                        aria-label="Add to watch later"
+                        onClick={
+                            () => {
+                            (watchLaterColor === '#00000080') ?
+                              this.setState({ watchLaterColor: '#3d5afe' })
+                              :
+                              this.setState({ watchLaterColor: '#00000080' });
                           }
-                        >
-                          <i className="material-icons" style={{color:this.state.watchLaterColor}}>watch_later</i>
-                        </IconButton>
+                          }
+                      >
+                        <i className="material-icons" style={{color:watchLaterColor}}>watch_later</i>
+                      </IconButton>
                     </Tooltip>
                   </Grid>
                   <Grid item>
                     <Tooltip title="watched">
-                        <IconButton 
-                          aria-label="Add to watched"
-                          onClick={
-                            (e)=>{
-                              (this.state.watchedIconColor === '#00000080')?
-                                this.setState({watchedIconColor: 'white'})
-                                :
-                                this.setState({watchedIconColor: '#00000080'})
-                            }
+                      <IconButton 
+                        aria-label="Add to watched"
+                        onClick={
+                            () => {
+                            (watchedIconColor === '#00000080') ?
+                              this.setState({ watchedIconColor: 'white' })
+                              :
+                              this.setState({ watchedIconColor: '#00000080' });
                           }
-                        >
-                            <i className="material-icons" style={{color:this.state.watchedIconColor}}>offline_pin</i>
-                        </IconButton>
+                          }
+                      >
+                        <i className="material-icons" style={{color:watchedIconColor}}>offline_pin</i>
+                      </IconButton>
                     </Tooltip>
                   </Grid>
                 </Grid>
+              </div>
             </div>
-          </div>
-          <div className="rating">
-            <p>{this.props.rating}</p>
-            <i className="material-icons">grade</i>
-          </div>
-        </Card>
+            <div className="rating">
+              <p>{rating}</p>
+              <i className="material-icons">grade</i>
+            </div>
+          </Card>
         </div>
         <div className="card-content">
-          <p className="movie-title" >{this.props.title}</p>
+          <p className="movie-title">{title}</p>
         </div>
         <div className="movie-genre">
-          <p>{this.props.genre}</p>
+          <p>{genre}</p>
         </div>
       </Grid>
     );
