@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
     AppBar,
     Toolbar,
@@ -9,9 +10,9 @@ import { isMobile } from 'react-device-detect';
 import SearchBar from 'material-ui-search-bar';
 import avatar from 'assets/images/avatar2.jpg';
 import logo from 'assets/flairLogo.png';
-import { HttpService } from 'util/services';
+import { changeScreen, changeLoading, navSearch } from 'actions/navActions';
 
-const httpService = HttpService();
+
 
 class NavBar extends Component {
     constructor(props){
@@ -24,41 +25,29 @@ class NavBar extends Component {
       this.onKeyPress = this.onKeyPress.bind(this);
     }
 
+    //runs when spacekey press
     onKeyPress(event){
       if(event.key === ' ') this.handleSearch();
     }
     
+
 		handleSearch(){
       const { searchValue } = this.state;
-      const {  searchScreen, searchLoadingTrue, searchLoadingFalse } = this.props;
+      const { changeLoading, changeScreen, navSearch } = this.props;
 
-      searchScreen();
-      searchLoadingTrue();
-
-      // httpService.post('url',{data})
-      const promise = httpService.post('/search/',{ searchValue });
-      promise.then(res => {
-        if (!res.ok) res.text().then((text) => console.log(text));
-        return res.json();
-      })
-        .then(resData => {
-          //response
-          setTimeout(()=>searchLoadingFalse(),1000); 
-          console.log(resData);
-        })
-        .catch(err => {
-          if (typeof err.message !== 'undefined') 
-            console.log(err.message);
-        });
+      changeScreen(true);
+      changeLoading(true);
+      navSearch({searchValue});
     }
 
+    //handle text value changes
     handleValueChange(value){
       this.setState({ searchValue: value });
     }
 
 
     render() {
-      const {  searchScreenFalse } = this.props;
+      const {  changeScreen, changeLoading } = this.props;
       const { searchValue } = this.state;
       return (	
         <AppBar position="static">
@@ -66,8 +55,8 @@ class NavBar extends Component {
             <div
               className="logo_wrapper"
               role="button"
-              onClick={()=>{searchScreenFalse();}} 
-              onKeyUp={()=>{searchScreenFalse();}}
+              onClick={()=>{changeScreen(false);changeLoading(false);}} 
+              onKeyUp={()=>{changeScreen(false);changeLoading(false);}}
               tabIndex={0}
             >
               <img src={logo} className="logo" alt="logo" />
@@ -100,18 +89,11 @@ class NavBar extends Component {
     }
 }
 
-export default NavBar;
+export default connect(null,{ navSearch, changeLoading, changeScreen })(NavBar);
 
-NavBar.defaultProps = {
-  searchScreen: () => {},
-  searchScreenFalse: () => {},
-  searchLoadingTrue: () => {},
-  searchLoadingFalse: () => {},
-}
+
 NavBar.propTypes = {
-  searchScreen: PropTypes.func,
-  searchScreenFalse: PropTypes.func,
-  searchLoadingTrue: PropTypes.func,
-  searchLoadingFalse: PropTypes.func,
-
+  changeScreen: PropTypes.func.isRequired,
+  changeLoading: PropTypes.func.isRequired,
+  navSearch: PropTypes.func.isRequired
 };
