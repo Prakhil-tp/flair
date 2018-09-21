@@ -9,22 +9,15 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      searchScreen:false,
-      searchLoading:true
+
     }
   }
 
   render(){
     const { match } = this.props;
-    const { searchScreen, searchLoading } = this.state;
     return(
       <div>
-        <NavBar 
-          searchScreen={()=>{this.setState({searchScreen:true})}}
-          searchScreenFalse={()=>{this.setState({searchScreen:false})}}
-          searchLoadingTrue={()=>{this.setState({searchLoading:true})}}
-          searchLoadingFalse={()=>{this.setState({searchLoading:false})}}
-        />
+        <NavBar />
         <div>
           <Switch>
             <Route
@@ -33,8 +26,6 @@ class App extends Component {
               render={(props)=> (
                 <Dashboard
                   {...props} 
-                  searchScreen={searchScreen}
-                  searchLoading={searchLoading}
                 />
               )}
             />
