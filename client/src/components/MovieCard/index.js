@@ -127,6 +127,6 @@ export default MovieCard;
 MovieCard.propTypes = {
   poster: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  rating: PropTypes.string.isRequired,
+  rating: PropTypes.node.isRequired,
   genre: PropTypes.string.isRequired
 }
