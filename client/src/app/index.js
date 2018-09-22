@@ -1,40 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import NavBar from 'components/NavBar';
 import Dashboard from './routes/Dashboard';
 import UserProfile from './routes/UserProfile';
 
-class App extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-
-    }
-  }
-
-  render(){
-    const { match } = this.props;
+const App = props => {
+    const { match } = props;
     return(
       <div>
         <NavBar />
-        <div>
+        <div className="page-holder">
           <Switch>
-            <Route
-              exact
-              path={`${match.url}`}
-              render={(props)=> (
-                <Dashboard
-                  {...props} 
-                />
-              )}
-            />
+            <Route exact path={`${match.url}`} component={Dashboard} />
             <Route exact path={`${match.url}profile`} component={UserProfile} />
           </Switch>
         </div>
       </div>
     );
-  }
+
 }
 export default App;
 
