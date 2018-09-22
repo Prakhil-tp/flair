@@ -4,22 +4,20 @@ import { connect } from 'react-redux';
 import MovieCard from 'components/MovieCard';
 import CardArea from 'components/CardArea';
 import SearchResults from './components/SearchResults';
+import FavoriteMovies from './components/FavoriteMovies'
 
 
 const Dashboard = (props) => (
 
   <div className="dashboard">
     <SearchResults {...props} />
-    <WhiteSpace {...props} />
     <CardArea title="POPULAR MOVIES">
- 
-        <MovieCard 
-          poster="https://images-na.ssl-images-amazon.com/images/I/717QDxYBkbL._SY606_.jpg" 
-          title="The Lord of the Rings: The Fellowship of the Ring"
-          genre="ACTION"
-          rating="4.8"
-        />
-
+      <MovieCard 
+        poster="https://images-na.ssl-images-amazon.com/images/I/717QDxYBkbL._SY606_.jpg" 
+        title="The Lord of the Rings: The Fellowship of the Ring"
+        genre="ACTION"
+        rating="4.8"
+      />
       <MovieCard 
         poster="https://i.imgur.com/NL57XsO.jpg"
         title="Black Panther"
@@ -39,29 +37,22 @@ const Dashboard = (props) => (
         rating="4.7"
       />
     </CardArea>
-    <div style={{height:'40px', width:'auto'}} />
+    <FavoriteMovies />
+    
 
   </div>
 );
-
-const mapStateToProps = state => ({
-  searchScreen: state.SearchLoading.searchScreen,
-  searchLoading: state.SearchLoading.searchLoading
-})
-export default connect(mapStateToProps,{})(Dashboard);
-
-
-//whitespace
-const WhiteSpace = (props) => {
-  const { searchScreen } = props;
-  if(searchScreen)
-    return<div style={{height:'40px', width:'auto'}} />;
-  return <div />;
-}
 
 //prop validataion
 Dashboard.propTypes = {
   searchScreen: PropTypes.bool.isRequired,
   searchLoading: PropTypes.bool.isRequired
 };
-WhiteSpace.propTypes = { searchScreen: PropTypes.bool.isRequired };
+
+const mapStateToProps = state => ({
+  searchScreen: state.SearchLoading.searchScreen,
+  searchLoading: state.SearchLoading.searchLoading
+})
+
+export default connect(mapStateToProps,{})(Dashboard);
+
