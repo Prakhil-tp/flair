@@ -1,5 +1,5 @@
 import React from 'react';
-import { Divider, Grid } from '@material-ui/core';
+import { Divider, Grid, Button } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
 const CardArea = (props) => {
@@ -26,6 +26,17 @@ const CardArea = (props) => {
               </div>
             )
         }
+        <Button 
+          variant="fab" 
+          style={{
+            position:'absolute',
+            bottom:'42%',
+            right:'5%'
+          }} 
+          color="primary"
+        >
+          <i className="material-icons">arrow_right</i>
+        </Button>
         <Divider />
       </div>
     );  
