@@ -37,6 +37,24 @@ class MovieCard extends Component {
       watchedIconColor: '#00000080'
     };
   }
+  onFavoriteClick = () => {
+    const { favoriteColor } = this.state;
+    if(favoriteColor === '#00000080')
+        return this.setState({ favoriteColor: '#FF1744' })
+    return this.setState({ favoriteColor: '#00000080' });
+  }
+  onWatchLaterClick = () => {
+    const { watchLaterColor } = this.state;
+    if(watchLaterColor === '#00000080') 
+      return this.setState({ watchLaterColor: '#3d5afe' });                         
+    return this.setState({ watchLaterColor: '#00000080' });
+  }
+  onWatchedClick = () => {
+    const { watchedIconColor } = this.state;
+    if(watchedIconColor === '#00000080')
+      return this.setState({ watchedIconColor: 'white' })
+    return this.setState({ watchedIconColor: '#00000080' });
+  }
   render(){
     const { favoriteColor, watchLaterColor, watchedIconColor } = this.state;
     const { poster, rating, title, genre } = this.props;
@@ -54,14 +72,8 @@ class MovieCard extends Component {
                         <Tooltip title="favorite">
                           <IconButton 
                             aria-label="Add to favorites"
-                            onClick={
-                          () => {
-                            (favoriteColor === '#00000080') ?
-                              this.setState({ favoriteColor: '#FF1744' })
-                              :
-                              this.setState({ favoriteColor: '#00000080' });
-                          }
-                        }
+                            onClick={this.onFavoriteClick}
+                              
                           >
                             <i className="material-icons" style={{color: favoriteColor}}>favorite</i>
                           </IconButton>
@@ -71,14 +83,7 @@ class MovieCard extends Component {
                         <Tooltip title="watch later">
                           <IconButton 
                             aria-label="Add to watch later"
-                            onClick={
-                            () => {
-                            (watchLaterColor === '#00000080') ?
-                              this.setState({ watchLaterColor: '#3d5afe' })
-                              :
-                              this.setState({ watchLaterColor: '#00000080' });
-                          }
-                          }
+                            onClick={this.onWatchLaterClick}
                           >
                             <i className="material-icons" style={{color:watchLaterColor}}>watch_later</i>
                           </IconButton>
@@ -88,14 +93,7 @@ class MovieCard extends Component {
                         <Tooltip title="watched">
                           <IconButton 
                             aria-label="Add to watched"
-                            onClick={
-                            () => {
-                            (watchedIconColor === '#00000080') ?
-                              this.setState({ watchedIconColor: 'white' })
-                              :
-                              this.setState({ watchedIconColor: '#00000080' });
-                          }
-                          }
+                            onClick={this.onWatchedClick}
                           >
                             <i className="material-icons" style={{color:watchedIconColor}}>offline_pin</i>
                           </IconButton>
