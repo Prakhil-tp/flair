@@ -1,52 +1,52 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import MovieCard from 'components/MovieCard';
-import CardArea from 'components/CardArea';
-import SearchResults from './components/SearchResults';
+import React,{ Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import {
+  fetchFavorite,
+  fetchPopular,
+  fetchTrending,
+  fetchWatched,
+  fetchWatchLater
+} from 'actions/movieActions'
+import SearchResults from './components/SearchResults'
 import FavoriteMovies from './components/FavoriteMovies'
+import PopularMovies from './components/PopularMovies'
+import TrendingMovies from './components/TrendingMovies'
+import WatchedMovies from './components/WatchedMovies'
+import WatchLater from './components/WatchLaterMovies'
 
 
-const Dashboard = (props) => (
-
-  <div className="dashboard">
-    <SearchResults {...props} />
-    <CardArea title="POPULAR MOVIES">
-      <MovieCard 
-        poster="https://images-na.ssl-images-amazon.com/images/I/717QDxYBkbL._SY606_.jpg" 
-        title="The Lord of the Rings: The Fellowship of the Ring"
-        genre="ACTION"
-        rating="4.8"
-      />
-      <MovieCard 
-        poster="https://i.imgur.com/NL57XsO.jpg"
-        title="Black Panther"
-        genre="DRAMA"
-        rating="3.4"
-      />
-      <MovieCard 
-        poster="https://i.pinimg.com/736x/2b/72/d3/2b72d3a848eb97c4e5834a6c31e0bb99.jpg"
-        title="Knight and Day"
-        genre="THRILLER"
-        rating="4.4"
-      />
-      <MovieCard 
-        poster="https://m.media-amazon.com/images/M/MV5BMjM3NzQ5NDcxOF5BMl5BanBnXkFtZTgwNzM4MTQ5NTM@._V1_.jpg"
-        title="The Nun"
-        genre="HORROR"
-        rating="4.7"
-      />
-    </CardArea>
-    <FavoriteMovies />
-    
-
-  </div>
-);
-
+class Dashboard extends Component {
+  componentWillMount(){
+    const { fetchFavorite, fetchPopular, fetchTrending, fetchWatched, fetchWatchLater } = this.props;
+    fetchFavorite();
+    fetchPopular();
+    fetchTrending();
+    fetchWatched();
+    fetchWatchLater();
+  }
+  render(){
+    return(
+      <div className="dashboard">
+        <SearchResults {...this.props} />
+        <PopularMovies />
+        <TrendingMovies />
+        <FavoriteMovies />
+        <WatchedMovies />
+        <WatchLater />
+      </div>
+    );
+  }
+}
 //prop validataion
 Dashboard.propTypes = {
   searchScreen: PropTypes.bool.isRequired,
-  searchLoading: PropTypes.bool.isRequired
+  searchLoading: PropTypes.bool.isRequired,
+  fetchFavorite: PropTypes.func.isRequired,
+  fetchPopular: PropTypes.func.isRequired,
+  fetchWatched: PropTypes.func.isRequired,
+  fetchWatchLater: PropTypes.func.isRequired,
+  fetchTrending: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -54,5 +54,13 @@ const mapStateToProps = state => ({
   searchLoading: state.SearchLoading.searchLoading
 })
 
-export default connect(mapStateToProps,{})(Dashboard);
+const mapDispatchToProps = {
+  fetchFavorite,
+  fetchPopular,
+  fetchWatched,
+  fetchWatchLater,
+  fetchTrending
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
 
