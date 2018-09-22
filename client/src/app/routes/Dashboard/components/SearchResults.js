@@ -21,7 +21,7 @@ const SearchResults = (props) => {
     return(
       <CardArea title="SEARCH RESULTS">
         <MovieCard 
-          image="https://images-na.ssl-images-amazon.com/images/I/717QDxYBkbL._SY606_.jpg" 
+          poster="https://images-na.ssl-images-amazon.com/images/I/717QDxYBkbL._SY606_.jpg" 
           title="The Lord of the Rings: The Fellowship of the Ring"
           genre="ACTION"
           rating="4.8"
