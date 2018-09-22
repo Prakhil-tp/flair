@@ -50,7 +50,7 @@ class NavBar extends Component {
       const {  changeScreen, changeLoading } = this.props;
       const { searchValue } = this.state;
       return (	
-        <AppBar position="static">
+        <AppBar position="fixed">
           <Toolbar>
             <div
               className="logo_wrapper"
