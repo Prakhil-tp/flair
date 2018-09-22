@@ -1,5 +1,4 @@
 import { 
-  NAV_SEARCH,
   FETCH_FAVORITE,
   FETCH_POPULAR,
   FETCH_TRENDING,
@@ -8,7 +7,6 @@ import {
 } from 'actions/types';
 
 const initialState = {
-  searchedMovies:[],
   popularMovies:[],
   trendingMovies:[],
   favoriteMovies:[],
@@ -18,11 +16,7 @@ const initialState = {
 
 export default function(state = initialState, action){
   switch (action.type) {
-    case NAV_SEARCH:
-      return {
-        ...state,
-        searchedMovies: action.payload
-      }
+
     case FETCH_FAVORITE:
       return {
         ...state,
