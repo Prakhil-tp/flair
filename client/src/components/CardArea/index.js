@@ -23,20 +23,21 @@ const CardArea = (props) => {
                 <Grid container flex-direction="row" spacing={8}>
                   {children}
                 </Grid>
+                <Button 
+                  variant="fab" 
+                  style={{
+                    position:'absolute',
+                    bottom:'42%',
+                    right:'5%'
+                  }} 
+                  color="primary"
+                >
+                  <i className="material-icons">arrow_right</i>
+                </Button>
               </div>
             )
         }
-        <Button 
-          variant="fab" 
-          style={{
-            position:'absolute',
-            bottom:'42%',
-            right:'5%'
-          }} 
-          color="primary"
-        >
-          <i className="material-icons">arrow_right</i>
-        </Button>
+
         <Divider />
       </div>
     );  
