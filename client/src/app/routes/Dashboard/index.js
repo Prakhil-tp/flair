@@ -12,12 +12,14 @@ const Dashboard = (props) => (
     <SearchResults {...props} />
     <WhiteSpace {...props} />
     <CardArea title="POPULAR MOVIES">
-      <MovieCard 
-        poster="https://images-na.ssl-images-amazon.com/images/I/717QDxYBkbL._SY606_.jpg" 
-        title="The Lord of the Rings: The Fellowship of the Ring"
-        genre="ACTION"
-        rating="4.8"
-      />
+ 
+        <MovieCard 
+          poster="https://images-na.ssl-images-amazon.com/images/I/717QDxYBkbL._SY606_.jpg" 
+          title="The Lord of the Rings: The Fellowship of the Ring"
+          genre="ACTION"
+          rating="4.8"
+        />
+
       <MovieCard 
         poster="https://i.imgur.com/NL57XsO.jpg"
         title="Black Panther"
