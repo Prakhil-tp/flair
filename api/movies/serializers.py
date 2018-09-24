@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from .models import Movie, MovieGenre, Cast, MovieWriter
-# Serializers goes here.
+from .models import Movie, MovieGenre, Cast, MovieWriter, Trending, UserList, Popular
+
 
 
 class GenreSerializer(serializers.ModelSerializer):
@@ -29,14 +29,57 @@ class CastSerializer(serializers.ModelSerializer):
 
 class MovieSerializer(serializers.ModelSerializer):
 
-    genres = GenreSerializer(many=True, read_only=True)
-    casts = CastSerializer(many=True, read_only=True)
-    writers = MovieWriter(many=True,read_only=True)
+    genres = serializers.SerializerMethodField()
+    favourite = serializers.SerializerMethodField()
+    watch_later = serializers.SerializerMethodField()
+    watched = serializers.SerializerMethodField()
 
+    
     class Meta:
         model = Movie
-        fields = ('__all__', 'casts', 'genres', 'writers',)
-        read_only_fields = ('__all__', 'casts', 'genres', 'writers', )
+        fields = ('id','title','genres','imdbID','poster','language','favourite','watch_later','watched')
+        read_only_fields =('title','genres','imdbID' ,'poster','language')
+
+    def get_genres(self,obj):
+        qs = MovieGenre.objects.filter(movie=obj)
+        return GenreSerializer(qs,many=True).data
+
+    def get_favourite(self,obj):
+        result = UserList.objects.filter(user=self.context.get('request').user,movie=obj)
+        if result:
+            return result[0].favourite
+        return False
+
+    def get_watch_later(self,obj):
+        result = UserList.objects.filter(user=self.context.get('request').user,movie=obj)
+        if result:
+            return result[0].watch_later
+        return False
+        
+    def get_watched(self,obj):
+        result = UserList.objects.filter(user=self.context.get('request').user,movie=obj)
+        if result:
+            return result[0].watched
+        return False
 
 
+class TrendingSerializer(serializers.ModelSerializer):
 
+    movie = MovieSerializer()
+    class Meta:
+        model = Trending
+        fields = ('movie',)
+
+class PopularSerializer(serializers.ModelSerializer):
+
+    movie = MovieSerializer()
+    class Meta:
+        model = Popular
+        fields = ('movie',)
+
+class UserListSerializer(serializers.ModelSerializer):
+
+    movie = MovieSerializer()
+    class Meta:
+        model = UserList
+        fields = ('movie',)

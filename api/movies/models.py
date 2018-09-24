@@ -20,6 +20,9 @@ class Movie(models.Model):
     # country = models.CharField(max_length=20)
     #production = models.CharField(max_length=20)
 
+    def __str__(self):
+        return self.title
+
 
 class MovieGenre(models.Model):
     movie = models.ForeignKey(Movie,on_delete=models.CASCADE)
@@ -53,7 +56,7 @@ class Recommendation(models.Model):
 class UserList(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    favorite = models.BooleanField()
+    favourite = models.BooleanField()
     watched = models.BooleanField()
     watch_later = models.BooleanField()
 
@@ -71,5 +74,9 @@ class UserList(models.Model):
 #     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
 
 class Trending(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+
+class Popular(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
