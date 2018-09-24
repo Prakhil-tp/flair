@@ -17,6 +17,9 @@ const WatchLaterMovies = (props) => {
               title={Movie.title}
               poster={Movie.poster}
               genre={Movie.genre}
+              favorate={Movie.favorate}
+              watch_later={Movie.watch_later}
+              watched={Movie.watched}
               rating={Movie.rating}
             />
           ))

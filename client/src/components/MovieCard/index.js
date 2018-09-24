@@ -40,7 +40,7 @@ class MovieCard extends Component {
   onFavoriteClick = () => {
     const { favoriteColor } = this.state;
     if(favoriteColor === '#00000080')
-        return this.setState({ favoriteColor: '#FF1744' })
+      return this.setState({ favoriteColor: '#FF1744' })
     return this.setState({ favoriteColor: '#00000080' });
   }
   onWatchLaterClick = () => {
