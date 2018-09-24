@@ -8,7 +8,7 @@ class Movie(models.Model):
     """
     Class that represents the Movie details.
     """
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=200)
     imdbID = models.CharField(max_length=15)
     # imbVotes = models.IntegerField()
     poster = models.URLField()
@@ -50,17 +50,26 @@ class Recommendation(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     strength = models.IntegerField(default=1)
 
-
-class Favourite(models.Model):
+class UserList(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    favorite = models.BooleanField()
+    watched = models.BooleanField()
+    watch_later = models.BooleanField()
 
 
-class WatchLater(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+# class Favourite(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+#     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
 
+# class WatchLater(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+#     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
 
-class Watched(models.Model):
+# class Watched(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+#     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+
+class Trending(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)

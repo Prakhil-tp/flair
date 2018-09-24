@@ -11,6 +11,7 @@ celery = "*"
 "bs4" = "*"
 requests = "*"
 redis = "*"
+eventlet = "*"
 
 [dev-packages]
 
