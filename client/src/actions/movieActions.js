@@ -18,7 +18,7 @@ export const fetchFavorite = () => dispatch => {
   })
   .then(movies=>dispatch({
     type:FETCH_FAVORITE,
-    payload:movies.results
+    payload:movies
   }))
   .catch(err => {
     if (typeof err.message !== 'undefined') 
@@ -36,7 +36,7 @@ export const fetchPopular = () => dispatch => {
   })
   .then(movies=>dispatch({
     type:FETCH_POPULAR,
-    payload:movies.results
+    payload:movies
   }))
   .catch(err => {
     if (typeof err.message !== 'undefined') console.log(err.message);
@@ -53,7 +53,7 @@ export const fetchWatched = () => dispatch => {
   })
   .then(movies=>dispatch({
     type:FETCH_WATCHED,
-    payload:movies.results
+    payload:movies
   }))
   .catch(err => {
     if (typeof err.message !== 'undefined') 
@@ -70,7 +70,7 @@ export const fetchWatchLater = () => dispatch => {
   })
   .then(movies=>dispatch({
     type:FETCH_WATCHLATER,
-    payload:movies.results
+    payload:movies
   }))
   .catch(err => {
     if (typeof err.message !== 'undefined') 
@@ -87,7 +87,7 @@ export const fetchTrending = () => dispatch => {
   })
   .then(movies=>dispatch({
     type:FETCH_TRENDING,
-    payload:movies.results
+    payload:movies
   }))
   .catch(err => {
     if (typeof err.message !== 'undefined') 

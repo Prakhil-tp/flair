@@ -8,10 +8,20 @@ import {
 
 const initialState = {
   popularMovies:[],
+  popularCurrentPage:1,
+  popularTotalPage:1,
   trendingMovies:[],
+  trendingCurrentPage:1,
+  trendingTotalPage:1,
   favoriteMovies:[],
+  favoriteCurrentPage:1,
+  favouriteTotalPage:1,
   watchlaterMovies:[],
-  watchedMovies:[]
+  watchlaterCurrentPage:1,
+  watchlaterTotalPage:1,
+  watchedMovies:[],
+  watchedCurrentPage:1,
+  watchedTotalPage:1,
 }
 
 export default function(state = initialState, action){
@@ -20,27 +30,27 @@ export default function(state = initialState, action){
     case FETCH_FAVORITE:
       return {
         ...state,
-        favoriteMovies: action.payload
+        favoriteMovies: action.payload.results
       }
     case FETCH_POPULAR:
       return {
         ...state,
-        popularMovies: action.payload
+        popularMovies: action.payload.results
       }
     case FETCH_TRENDING:
       return {
         ...state,
-        trendingMovies: action.payload
+        trendingMovies: action.payload.results
       }
     case FETCH_WATCHED:
       return {
         ...state,
-        watchedMovies: action.payload
+        watchedMovies: action.payload.results
       }
     case FETCH_WATCHLATER:
       return {
         ...state,
-        watchlaterMovies: action.payload
+        watchlaterMovies: action.payload.results
       }
   
     default:
