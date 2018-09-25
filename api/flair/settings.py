@@ -27,6 +27,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 60
+}
+
 
 # Application definition
 
@@ -83,7 +88,7 @@ DATABASES = {
         'NAME': 'flair',
         'USER': 'postgres',
         'PASSWORD': 'vonnue',
-        'HOST': '192.168.0.128',
+        'HOST': '192.168.0.126',
         'PORT': '5432',
     }
 }
