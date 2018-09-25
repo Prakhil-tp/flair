@@ -7,12 +7,13 @@ favouriteListApiView,
 PopularListApiView, 
 WatchedListApiView,
 WatchLaterListApiView,
-UserListCreateOrUpdateView
+UserActionView,
+MovieSearchView
 )
 
 
 urlpatterns = [
-    path('actions/<int:id>',UserListCreateOrUpdateView.as_view()),
+    path('actions/',UserActionView.as_view()),
     path('insert/',get_movie_details),
     path('list/', MovieListApiView.as_view()),
     path('trending/', TrendingListApiView.as_view()),
@@ -20,4 +21,5 @@ urlpatterns = [
     path('watched/', WatchedListApiView.as_view()),
     path('watchlater/', WatchLaterListApiView.as_view()),
     path('favourite/', favouriteListApiView.as_view()),
+    path('find',MovieSearchView.as_view())
 ]

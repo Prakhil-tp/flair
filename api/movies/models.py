@@ -56,9 +56,9 @@ class Recommendation(models.Model):
 class UserList(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    favourite = models.BooleanField()
-    watched = models.BooleanField()
-    watch_later = models.BooleanField()
+    favourite = models.BooleanField(default=False)
+    watched = models.BooleanField(default=False)
+    watch_later = models.BooleanField(default=False)
 
 
 # class Favourite(models.Model):
