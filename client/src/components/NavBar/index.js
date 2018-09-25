@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import {
     AppBar,
     Toolbar,
     Avatar,
-} from '@material-ui/core';
-import PropTypes from 'prop-types';
-import { isMobile } from 'react-device-detect';
-import SearchBar from 'material-ui-search-bar';
-import avatar from 'assets/images/avatar2.jpg';
-import logo from 'assets/flairLogo.png';
-import { changeScreen, changeLoading, navSearch } from 'actions/navActions';
+} from '@material-ui/core'
+import PropTypes from 'prop-types'
+import { isMobile } from 'react-device-detect'
+import SearchBar from 'material-ui-search-bar'
+import avatar from 'assets/images/avatar2.jpg'
+import logo from 'assets/flairLogo.png'
+import { changeScreen, changeLoading, navSearch } from 'actions/navActions'
 
 
 
@@ -18,7 +18,7 @@ class NavBar extends Component {
     constructor(props){
 			super(props);
 			this.state = {
-				searchValue:'',
+				search:'',
 			}
       this.handleSearch = this.handleSearch.bind(this);
       this.handleValueChange = this.handleValueChange.bind(this);
@@ -32,23 +32,23 @@ class NavBar extends Component {
     
 
 		handleSearch(){
-      const { searchValue } = this.state;
+      const { search } = this.state;
       const { changeLoading, changeScreen, navSearch } = this.props;
 
       changeScreen(true);
       changeLoading(true);
-      navSearch({searchValue});
+      navSearch({search});
     }
 
     //handle text value changes
     handleValueChange(value){
-      this.setState({ searchValue: value });
+      this.setState({ search: value });
     }
 
 
     render() {
       const {  changeScreen, changeLoading } = this.props;
-      const { searchValue } = this.state;
+      const { search } = this.state;
       return (	
         <AppBar position="fixed">
           <Toolbar>
@@ -65,7 +65,7 @@ class NavBar extends Component {
             {
               !isMobile? (
                 <SearchBar
-                  value={searchValue}
+                  value={search}
                   onChange={this.handleValueChange}
                   onRequestSearch={this.handleSearch}
                   onKeyDown={this.onKeyPress}
