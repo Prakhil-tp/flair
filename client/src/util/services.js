@@ -1,3 +1,6 @@
+/* global fetch:false, localStorage:false,  */
+/* eslint-env browser */
+
 // localstorage service function
 function LocalStorageService(method, key, value) {
     switch (method) {
@@ -17,9 +20,7 @@ function LocalStorageService(method, key, value) {
   const HttpService = function httpService() {
 
     const baseURL = 'http://localhost:8000';
-  
     const x = {};
-  
     const headers = {
       Accept: 'application/json, text/plain, */*',
       'Content-type': 'application/json',
