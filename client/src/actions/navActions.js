@@ -5,16 +5,15 @@ const httpService = HttpService();
 
 // http post request with search data
 export const navSearch = searchData => dispatch => {
-  const promise = httpService.post('/search/', searchData);
+  const promise = httpService.get('/movies/find', searchData);
   promise.then(res => {
     if (!res.ok) res.text().then((text) => console.log(text));
     return res.json();
   })
     .then(movies => dispatch({
       type: NAV_SEARCH,
-      payload: movies
-    })
-    )
+      payload: movies.results
+    }))
     .catch(err => {
       if (typeof err.message !== 'undefined') 
         console.log(err.message);

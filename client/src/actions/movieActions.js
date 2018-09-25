@@ -11,14 +11,14 @@ const httpService = HttpService();
 
 //get favorite movies
 export const fetchFavorite = () => dispatch => {
-  const promise = httpService.get('/favorite');
+  const promise = httpService.get('/movies/favourite/');
   promise.then(res => {
     if (!res.ok) res.text().then((text) => console.log(text));
     return res.json();
   })
   .then(movies=>dispatch({
     type:FETCH_FAVORITE,
-    payload:movies
+    payload:movies.results
   }))
   .catch(err => {
     if (typeof err.message !== 'undefined') 
@@ -29,32 +29,31 @@ export const fetchFavorite = () => dispatch => {
 
 //get popular movies
 export const fetchPopular = () => dispatch => {
-  const promise = httpService.get('/popular');
+  const promise = httpService.get('/movies/popular/');
   promise.then(res => {
     if (!res.ok) res.text().then((text) => console.log(text));
     return res.json();
   })
   .then(movies=>dispatch({
     type:FETCH_POPULAR,
-    payload:movies
+    payload:movies.results
   }))
   .catch(err => {
-    if (typeof err.message !== 'undefined') 
-      console.log(err.message);
+    if (typeof err.message !== 'undefined') console.log(err.message);
   });
   
 }
 
 //get watched movies
 export const fetchWatched = () => dispatch => {
-  const promise = httpService.get('/watched');
+  const promise = httpService.get('/movies/watched/');
   promise.then(res => {
     if (!res.ok) res.text().then((text) => console.log(text));
     return res.json();
   })
   .then(movies=>dispatch({
     type:FETCH_WATCHED,
-    payload:movies
+    payload:movies.results
   }))
   .catch(err => {
     if (typeof err.message !== 'undefined') 
@@ -64,14 +63,14 @@ export const fetchWatched = () => dispatch => {
 
 //get watchlater movies
 export const fetchWatchLater = () => dispatch => {
-  const promise = httpService.get('/watchlater');
+  const promise = httpService.get('/movies/watchlater/');
   promise.then(res => {
     if (!res.ok) res.text().then((text) => console.log(text));
     return res.json();
   })
   .then(movies=>dispatch({
     type:FETCH_WATCHLATER,
-    payload:movies
+    payload:movies.results
   }))
   .catch(err => {
     if (typeof err.message !== 'undefined') 
@@ -81,14 +80,14 @@ export const fetchWatchLater = () => dispatch => {
 
 // get trending movies
 export const fetchTrending = () => dispatch => {
-  const promise = httpService.get('/trending');
+  const promise = httpService.get('/movies/trending/');
   promise.then(res => {
     if (!res.ok) res.text().then((text) => console.log(text));
     return res.json();
   })
   .then(movies=>dispatch({
     type:FETCH_TRENDING,
-    payload:movies
+    payload:movies.results
   }))
   .catch(err => {
     if (typeof err.message !== 'undefined') 

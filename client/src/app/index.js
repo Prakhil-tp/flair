@@ -1,12 +1,14 @@
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import NavBar from 'components/NavBar';
-import Dashboard from './routes/Dashboard';
-import UserProfile from './routes/UserProfile';
+import React, { Component } from 'react'
+import { Route, Switch } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import NavBar from 'components/NavBar'
+import Dashboard from './routes/Dashboard'
+import UserProfile from './routes/UserProfile'
 
-const App = props => {
-    const { match } = props;
+class App extends Component {
+  state = {}
+  render(){
+    const { match } = this.props;
     return(
       <div>
         <NavBar />
@@ -18,8 +20,10 @@ const App = props => {
         </div>
       </div>
     );
-
+  }
 }
+
+// export default connect({},{})(App);
 export default App;
 
 App.defaultProps = {
