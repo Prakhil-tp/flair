@@ -79,25 +79,25 @@ class PopularListApiView(generics.ListAPIView):
     serializer_class = UserListSerializer
 
 #favourite/id
-class UserListCreateOrUpdateView(APIView):
+# class UserListCreateOrUpdateView(APIView):
 
-    def post(self, request):
-        id=request.data.get("id")
-        movie_qr = Movie.objects.get(id=id) 
-        result = UserList.object.filter(user= self.request.user,movie=movie_qr)
-        if result:
-            result.favourite = request.data.get('favourite')
-            result.save()
-        else:
-            UserList.objects.create(
-                user= self.request.user,
-                movie=movie_qr,
-                favourite=request.data.get('favourite'),
-            )
-        return Response({"success":True})
-#        if mymodel:
-#            return self.update(request, *args, **kwargs)
-#        else:
+#     def post(self, request):
+#         id=request.data.get("id")
+#         movie_qr = Movie.objects.get(id=id) 
+#         result = UserList.object.filter(user= self.request.user,movie=movie_qr)
+#         if result:
+#             result.favourite = request.data.get('favourite')
+#             result.save()
+#         else:
+#             UserList.objects.create(
+#                 user= self.request.user,
+#                 movie=movie_qr,
+#                 favourite=request.data.get('favourite'),
+#             )
+#         return Response({"success":True})
+# #        if mymodel:
+# #            return self.update(request, *args, **kwargs)
+# #        else:
 
 
 #actions/apply
