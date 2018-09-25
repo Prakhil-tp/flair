@@ -83,7 +83,7 @@ DATABASES = {
         'NAME': 'flair',
         'USER': 'postgres',
         'PASSWORD': 'vonnue',
-        'HOST': 'localhost',
+        'HOST': '192.168.0.128',
         'PORT': '5432',
     }
 }

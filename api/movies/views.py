@@ -80,3 +80,24 @@ class PopularListApiView(generics.ListAPIView):
 #        if mymodel:
 #            return self.update(request, *args, **kwargs)
 #        else:
+
+
+#actions/apply
+class UserActionView(APIView):
+
+    def put(self, request, *args, **kwargs):
+        movie_id = request.dataa.get('movie')
+        movie = Movie.objects.get(id=movie_id)
+        user_list = UserList.objects.filter(user=request.user, movie=movie)
+        user_list = user_list[0]
+        if not user_list:
+            user_list = UserList.objects.create(user=request.user, movie=movie)
+            action = request.data.get('action')
+            value = request.data.get('value')
+            if action == 'favourite':
+                user_list.favourite=value
+            elif action == 'watch_later':
+                user_list.watch_later = value
+            else:
+                user_list.watched = value
+        return Response({'success':True})
