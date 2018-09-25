@@ -13,6 +13,7 @@ requests = "*"
 redis = "*"
 eventlet = "*"
 django-cors-headers = "*"
+djangorestframework-jwt = "*"
 
 [dev-packages]
 
