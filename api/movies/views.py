@@ -46,7 +46,7 @@ class favouriteListApiView(generics.ListAPIView):
     serializer_class = UserListSerializer
     def get_queryset(self):
         return UserList.objects.filter(user=self.request.user,favourite=True)
-
+    
 #watchlater/
 class WatchLaterListApiView(generics.ListAPIView):
     permission_classes = (permissions.AllowAny,)
@@ -67,16 +67,20 @@ class PopularListApiView(generics.ListAPIView):
     permission_classes = (permissions.AllowAny,)
     serializer_class = UserListSerializer
 
-#actions/id
-# class UserListCreateOrUpdateView(generics.CreateAPIView):
+#favourite/id
+class UserListCreateOrUpdateView(APIView):
 
-#     def create(self, request, *args, **kwargs):
-#        id=request.data.get("id")
-#        movie_qr = Movie.objects.get(id=id) 
-#        result = UserList.object.filter(user= self.request.user,movie=movie_qr)
-#        if result:
-#            if request.data.get('favourite'):
-
-#        if mymodel:
-#            return self.update(request, *args, **kwargs)
-#        else:
+    def post(self, request):
+        id=request.data.get("id")
+        movie_qr = Movie.objects.get(id=id) 
+        result = UserList.object.filter(user= self.request.user,movie=movie_qr)
+        if result:
+            result.favourite = request.data.get('favourite')
+            result.save()
+        else:
+            UserList.objects.create(
+                user= self.request.user,
+                movie=movie_qr,
+                favourite=request.data.get('favourite'),
+            )
+        return Response({"success":True})

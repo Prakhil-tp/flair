@@ -12,6 +12,7 @@ celery = "*"
 requests = "*"
 redis = "*"
 eventlet = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 

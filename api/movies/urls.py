@@ -12,7 +12,7 @@ UserListCreateOrUpdateView
 
 
 urlpatterns = [
-    path('actions/<int:id>',UserListCreateOrUpdateView.as_view()),
+    path('favourite/<int:id>',UserListCreateOrUpdateView.as_view()),
     path('insert/',get_movie_details),
     path('list/', MovieListApiView.as_view()),
     path('trending/', TrendingListApiView.as_view()),
