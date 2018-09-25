@@ -12,6 +12,7 @@ celery = "*"
 requests = "*"
 redis = "*"
 eventlet = "*"
+djangorestframework-jwt = "*"
 
 [dev-packages]
 
