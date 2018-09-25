@@ -14,13 +14,13 @@ const WatchedMovies = (props) => {
           Movies.map(Movie=>(
             <MovieCard
               key={shortid.generate()}
-              title={Movie.title}
-              poster={Movie.poster}
-              genre={Movie.genre}
-              favorate={Movie.favorate}
-              watch_later={Movie.watch_later}
-              watched={Movie.watched}
-              rating={Movie.rating}
+              title={Movie.movie.title}
+              poster={Movie.movie.poster}
+              genre={Movie.movie.genres[0]&&Movie.movie.genres[0].genre.toUpperCase()}              
+              favorate={Movie.movie.favorate}
+              watch_later={Movie.movie.watch_later}
+              watched={Movie.movie.watched}
+              rating={Movie.movie.rating}
             />
           ))
         }
@@ -35,6 +35,10 @@ const mapStateToProps = state => ({
   Movies: state.Movies.watchedMovies
 })
 
+WatchedMovies.defaultProps = {
+  Movies:[{title:''},]
+}
+
 WatchedMovies.propTypes = {
   Movies: PropTypes.arrayOf(
     shape({
@@ -43,7 +47,7 @@ WatchedMovies.propTypes = {
       genre:PropTypes.string,
       rating:PropTypes.node
     })
-    ).isRequired
+    )
 }
 
 export default connect(mapStateToProps,{})(WatchedMovies)

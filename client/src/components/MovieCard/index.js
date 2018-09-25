@@ -64,7 +64,7 @@ class MovieCard extends Component {
           <div>
             <div className="movie-card">
               <Card style={styles.card}>
-                <CardMedia image={poster} style={styles.media} />
+                <CardMedia image={`https://image.tmdb.org/t/p/w185/${poster}`} style={styles.media} />
                 <div style={styles.overlay}>
                   <div className="button-area">
                     <Grid container flex-direction="row" spacing={0}>
@@ -111,9 +111,16 @@ class MovieCard extends Component {
             <div className="card-content">
               <p className="movie-title">{title}</p>
             </div>
-            <div className="movie-genre">
-              <p>{genre}</p>
-            </div>
+            {
+  
+              (genre !== undefined)? 
+                (
+                  <div className="movie-genre">
+                    <p>{genre}</p>
+                  </div>
+                ):
+                  <div />
+            }
           </div>
         </Slide>
       </Grid>
@@ -126,5 +133,4 @@ MovieCard.propTypes = {
   poster: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   rating: PropTypes.node.isRequired,
-  genre: PropTypes.string.isRequired
 }
