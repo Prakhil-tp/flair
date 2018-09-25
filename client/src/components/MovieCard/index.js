@@ -60,7 +60,7 @@ class MovieCard extends Component {
     const { poster, rating, title, genre } = this.props;
     return(
       <Grid item>
-        <Slide in direction="left" timeout={1000}>
+        <Slide in direction="right" timeout={700}>
           <div>
             <div className="movie-card">
               <Card style={styles.card}>
