@@ -18,12 +18,15 @@ import WatchLater from './components/WatchLaterMovies'
 
 class Dashboard extends Component {
   componentWillMount(){
-    const { fetchFavorite, fetchPopular, fetchTrending, fetchWatched, fetchWatchLater } = this.props;
-    fetchFavorite();
-    fetchPopular();
-    fetchTrending();
-    fetchWatched();
-    fetchWatchLater();
+    const { 
+      fetchFavorite, fetchPopular, fetchTrending, fetchWatched, fetchWatchLater,
+      favPage, popPage, trePage, watchedPage, watchltr
+     } = this.props;
+    fetchFavorite(favPage);
+    fetchPopular(popPage);
+    fetchTrending(trePage);
+    fetchWatched(watchedPage);
+    fetchWatchLater(watchltr);
   }
   render(){
     return(
@@ -46,12 +49,29 @@ Dashboard.propTypes = {
   fetchPopular: PropTypes.func.isRequired,
   fetchWatched: PropTypes.func.isRequired,
   fetchWatchLater: PropTypes.func.isRequired,
-  fetchTrending: PropTypes.func.isRequired
+  fetchTrending: PropTypes.func.isRequired,
+  favPage: PropTypes.node,
+  popPage: PropTypes.node,
+  trePage: PropTypes.node,
+  watchedPage: PropTypes.node,
+  watchltr: PropTypes.node
 };
+Dashboard.defaultProps = {
+  favPage:1,
+  popPage:1,
+  trePage:1,
+  watchedPage:1,
+  watchltr:1
+}
 
 const mapStateToProps = state => ({
   searchScreen: state.SearchLoading.searchScreen,
-  searchLoading: state.SearchLoading.searchLoading
+  searchLoading: state.SearchLoading.searchLoading,
+  favPage: state.Movies.favoriteCurrentPage,
+  popPage: state.Movies.popularCurrentPage,
+  trePage: state.Movies.trendingCurrentPage,
+  watchedPage: state.Movies.watchedCurrentPage,
+  watchltr: state.Movies.watchlaterCurrentPage,
 })
 
 const mapDispatchToProps = {
