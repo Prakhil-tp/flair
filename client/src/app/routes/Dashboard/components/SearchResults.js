@@ -1,52 +1,63 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes,{ shape } from 'prop-types'
 import {connect} from 'react-redux'
+import { navSearch } from 'actions/navActions'
 import shortid from 'shortid'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import MovieCard from 'components/MovieCard'
 import CardArea from 'components/CardArea'
 
-const SearchResults = (props) => {
-  const { searchLoading, searchScreen, Movies } = props;
-  if(searchScreen && searchLoading){
-    return(
-      <CardArea isLoading title="SEARCH RESULTS">
-        <CircularProgress 
-          size={50} 
-          thickness={2} 
-          color="secondary"
-        />
-      </CardArea>
-    );
+class SearchResults extends Component {
+  changePage = () => {
+    const { current_page, total_page, navSearch, search_key } = this.props;
+    if (current_page < total_page) 
+      navSearch({search:search_key, page:current_page+1})   
   }
-  else if(searchScreen && !searchLoading && Movies.length > 0 ){
-    return(
-      <CardArea title="SEARCH RESULTS">
-        {
-          Movies.map(Movie=>(
-            <MovieCard
-              key={shortid.generate()}
-              title={Movie.title}
-              poster={Movie.poster}
-              genre={Movie.genres[0]&&Movie.genres[0].genre.toUpperCase()}
-              favorate={Movie.favorate}
-              watch_later={Movie.watch_later}
-              watched={Movie.watched}
-              rating={Movie.rating}
-            />
-            ))
-        }
-      </CardArea>
-    );
+  render(){
+    const { searchLoading, searchScreen, Movies } = this.props;
+    if(searchScreen && searchLoading){
+      return(
+        <CardArea isLoading title="SEARCH RESULTS">
+          <CircularProgress 
+            size={50} 
+            thickness={2} 
+            color="secondary"
+          />
+        </CardArea>
+      );
+    }
+    else if(searchScreen && !searchLoading && Movies.length > 0 ){
+      return(
+        <CardArea title="SEARCH RESULTS" changePage={this.changePage}>
+          {
+            Movies.map(Movie=>(
+              <MovieCard
+                key={shortid.generate()}
+                title={Movie.title}
+                poster={Movie.poster}
+                genre={Movie.genres[0]&&Movie.genres[0].genre.toUpperCase()}
+                favorate={Movie.favorate}
+                watch_later={Movie.watch_later}
+                watched={Movie.watched}
+                rating={Movie.rating}
+              />
+              ))
+          }
+        </CardArea>
+      );
+    }
+    return(<div />); 
   }
-  return(<div />); 
 }
 
 const mapStateToProps = state => ({
-  Movies: state.SearchLoading.searchedMovies
+  Movies: state.SearchLoading.searchedMovies,
+  current_page: state.SearchLoading.currentPage,
+  total_page: state.SearchLoading.totalPage,
+  search_key: state.SearchLoading.searchKey
 })
 
-export default connect(mapStateToProps,{})(SearchResults);
+export default connect(mapStateToProps,{navSearch})(SearchResults);
 
 SearchResults.defaultProps = {
   Movies:[{title:''},]
@@ -61,4 +72,8 @@ SearchResults.propTypes = {
     })),
   searchScreen: PropTypes.bool.isRequired,
   searchLoading: PropTypes.bool.isRequired,
+  current_page: PropTypes.number.isRequired,
+  total_page: PropTypes.number.isRequired,
+  navSearch: PropTypes.func.isRequired,
+  search_key: PropTypes.string.isRequired
 };

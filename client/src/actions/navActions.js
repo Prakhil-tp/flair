@@ -10,10 +10,14 @@ export const navSearch = searchData => dispatch => {
     if (!res.ok) res.text().then((text) => console.log(text));
     return res.json();
   })
-    .then(movies => dispatch({
-      type: NAV_SEARCH,
-      payload: movies.results
-    }))
+    .then(movies =>{ 
+      movies.current_page = searchData.page;
+      movies.search_key = searchData.search;
+      dispatch({
+        type: NAV_SEARCH,
+        payload: movies
+      })
+    })
     .catch(err => {
       if (typeof err.message !== 'undefined') 
         console.log(err.message);

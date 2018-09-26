@@ -20,28 +20,24 @@ class NavBar extends Component {
 			this.state = {
 				search:'',
 			}
-      this.handleSearch = this.handleSearch.bind(this);
-      this.handleValueChange = this.handleValueChange.bind(this);
-      this.onKeyPress = this.onKeyPress.bind(this);
     }
 
     //runs when spacekey press
-    onKeyPress(event){
+    onKeyPress = (event) => {
       if(event.key === ' ') this.handleSearch();
     }
     
-
-		handleSearch(){
+		handleSearch = () => {
       const { search } = this.state;
       const { changeLoading, changeScreen, navSearch } = this.props;
 
       changeScreen(true);
       changeLoading(true);
-      navSearch({search});
+      navSearch({search, page:1});
     }
 
     //handle text value changes
-    handleValueChange(value){
+    handleValueChange = (value) => {
       this.setState({ search: value });
     }
 
@@ -89,11 +85,15 @@ class NavBar extends Component {
     }
 }
 
-export default connect(null,{ navSearch, changeLoading, changeScreen })(NavBar);
+
+
+const mapDispatchToProps = { navSearch, changeLoading, changeScreen };
+
+export default connect(null,mapDispatchToProps)(NavBar);
 
 
 NavBar.propTypes = {
   changeScreen: PropTypes.func.isRequired,
   changeLoading: PropTypes.func.isRequired,
-  navSearch: PropTypes.func.isRequired
+  navSearch: PropTypes.func.isRequired,
 };

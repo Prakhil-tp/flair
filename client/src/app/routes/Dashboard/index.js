@@ -21,10 +21,10 @@ class Dashboard extends Component {
     const { 
       fetchFavorite, fetchPopular, fetchTrending, fetchWatched, fetchWatchLater,
       favPage, popPage, trePage, watchedPage, watchltr
-     } = this.props;
-    fetchFavorite(favPage);
+    } = this.props;
     fetchPopular(popPage);
     fetchTrending(trePage);
+    fetchFavorite(favPage);
     fetchWatched(watchedPage);
     fetchWatchLater(watchltr);
   }

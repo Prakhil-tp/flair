@@ -3,7 +3,7 @@ import { Divider, Grid, Button } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
 const CardArea = (props) => {
-  const { title, isLoading, children } = props;
+  const { title, isLoading, children, changePage } = props;
     return(
       <div className="main">
         <Divider />
@@ -29,7 +29,8 @@ const CardArea = (props) => {
                     position:'absolute',
                     bottom:'42%',
                     right:'5%'
-                  }} 
+                  }}
+                  onClick={changePage}
                   color="primary"
                 >
                   <i className="material-icons">arrow_right</i>
@@ -47,11 +48,11 @@ export default CardArea;
 CardArea.defaultProps = {
   isLoading: false,
   title: '',
-  children: <div />
 };
 
 CardArea.propTypes = {
   isLoading: PropTypes.bool,
   title: PropTypes.string,
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
+  changePage: PropTypes.func.isRequired
 };

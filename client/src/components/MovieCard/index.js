@@ -6,7 +6,7 @@ import {
   Grid,
   IconButton,
   Tooltip,
-  Slide
+  Slide,
 } from '@material-ui/core';
 
 const styles = {
@@ -60,7 +60,7 @@ class MovieCard extends Component {
     const { poster, rating, title, genre } = this.props;
     return(
       <Grid item>
-        <Slide in direction="right" timeout={700}>
+        <Slide in direction="right" timeout={500}>
           <div>
             <div className="movie-card">
               <Card style={styles.card}>
@@ -129,8 +129,13 @@ class MovieCard extends Component {
 }
 export default MovieCard;
 
+MovieCard.defaultProps = {
+  genre: undefined
+}
+
 MovieCard.propTypes = {
   poster: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   rating: PropTypes.node.isRequired,
+  genre: PropTypes.string
 }

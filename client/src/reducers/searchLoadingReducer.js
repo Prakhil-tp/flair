@@ -6,9 +6,12 @@ import {
 
 
 const initialState = {
+  searchKey:'',
   searchedMovies:[],
   searchScreen:false,
-  searchLoading:false
+  searchLoading:false,
+  currentPage:1,
+  totalPage:0
 }
 
 export default function(state = initialState, action){
@@ -16,7 +19,10 @@ export default function(state = initialState, action){
     case NAV_SEARCH:
       return {
         ...state,
-        searchedMovies: action.payload,
+        searchedMovies: action.payload.results,
+        totalPage: action.payload.total_pages,
+        currentPage: action.payload.current_page,
+        searchKey: action.payload.search_key,
         searchLoading: false
       }
     case NAV_SEARCH_LOADING:
