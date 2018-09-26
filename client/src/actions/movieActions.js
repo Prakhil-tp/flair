@@ -1,6 +1,6 @@
 import { HttpService } from 'util/services.js';
 import { 
-  FETCH_FAVORITE, 
+  FETCH_FAVOURITE, 
   FETCH_POPULAR,
   FETCH_TRENDING,
   FETCH_WATCHED,
@@ -9,8 +9,8 @@ import {
 
 const httpService = HttpService();
 
-//get favorite movies
-export const fetchFavorite = nextPage => dispatch => {
+//get favourite movies
+export const fetchFavourite = nextPage => dispatch => {
   const promise = httpService.get('/movies/favourite/',{page:nextPage});
   promise.then(res => {
     if (!res.ok) res.text().then((text) => console.log(text));
@@ -19,7 +19,7 @@ export const fetchFavorite = nextPage => dispatch => {
   .then(movies=>{
     movies.current_page = nextPage;  
     dispatch({
-    type:FETCH_FAVORITE,
+    type:FETCH_FAVOURITE,
     payload:movies
     })
   })

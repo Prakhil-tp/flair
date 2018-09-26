@@ -2,16 +2,16 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes, { shape } from 'prop-types'
 import shortid from 'shortid'
-import { fetchFavorite } from 'actions/movieActions'
+import { fetchFavourite } from 'actions/movieActions'
 import MovieCard from 'components/MovieCard'
 import CardArea from 'components/CardArea'
 
-class FavoriteMovies extends Component{
+class FavouriteMovies extends Component{
 
   changePage = () => {
-    const { current_page, total_page, fetchFavorite } = this.props;
+    const { current_page, total_page, fetchFavourite } = this.props;
     if (current_page < total_page) 
-      fetchFavorite(current_page+1)   
+      fetchFavourite(current_page+1)   
   }
 
   render(){
@@ -19,15 +19,16 @@ class FavoriteMovies extends Component{
 
     if(Movies.length > 0){
       return (
-        <CardArea title="FAVORITE MOVIES" changePage={this.changePage}>
+        <CardArea title="FAVOURITE MOVIES" changePage={this.changePage}>
           {
             Movies.map(Movie=>(
               <MovieCard
                 key={shortid.generate()}
+                movieId={Movie.movie.id}
                 title={Movie.movie.title}
                 poster={Movie.movie.poster}
                 genre={Movie.movie.genres[0]&&Movie.movie.genres[0].genre.toUpperCase()}              
-                favorate={Movie.movie.favorate}
+                favourite={Movie.movie.favourite}
                 watch_later={Movie.movie.watch_later}
                 watched={Movie.movie.watched}
                 rating={Movie.movie.rating}
@@ -43,18 +44,18 @@ class FavoriteMovies extends Component{
 
 
 const mapStateToProps = state => ({
-  Movies: state.Movies.favoriteMovies,
-  current_page: state.Movies.favoriteCurrentPage,
+  Movies: state.Movies.favouriteMovies,
+  current_page: state.Movies.favouriteCurrentPage,
   total_page: state.Movies.favouriteTotalPage,
 })
 
-const mapDispatchToProps = { fetchFavorite }
+const mapDispatchToProps = { fetchFavourite }
 
-FavoriteMovies.defaultProps = {
+FavouriteMovies.defaultProps = {
   Movies:[{title:''},]
 }
 
-FavoriteMovies.propTypes = {
+FavouriteMovies.propTypes = {
   Movies: PropTypes.arrayOf(
     shape({
       title:PropTypes.string,
@@ -65,8 +66,8 @@ FavoriteMovies.propTypes = {
     ),
     current_page: PropTypes.number.isRequired,
     total_page: PropTypes.number.isRequired,
-    fetchFavorite: PropTypes.func.isRequired
+    fetchFavourite: PropTypes.func.isRequired
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(FavoriteMovies)
+export default connect(mapStateToProps,mapDispatchToProps)(FavouriteMovies)
 

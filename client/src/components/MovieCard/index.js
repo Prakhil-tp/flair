@@ -1,5 +1,6 @@
-import React,{Component} from 'react';
-import PropTypes from 'prop-types';
+import React,{Component} from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import { 
   Card,
   CardMedia,
@@ -8,6 +9,7 @@ import {
   Tooltip,
   Slide,
 } from '@material-ui/core';
+import { userAction } from 'actions/userActions'
 
 const styles = {
   media: {
@@ -32,16 +34,39 @@ class MovieCard extends Component {
   constructor(props){
     super(props);
     this.state = {
-      favoriteColor: '#00000080',
+      favouriteColor: '#00000080',
       watchLaterColor: '#00000080',
       watchedIconColor: '#00000080'
     };
   }
-  onFavoriteClick = () => {
-    const { favoriteColor } = this.state;
-    if(favoriteColor === '#00000080')
-      return this.setState({ favoriteColor: '#FF1744' })
-    return this.setState({ favoriteColor: '#00000080' });
+  componentWillMount(){
+    const {favourite, watch_later, watched} = this.props;
+    if(favourite)
+      this.setState({favouriteColor:'#FF1744'})
+    if(watch_later)
+      this.setState({watchLaterColor:'#3d5afe'})
+    if(watched)
+      this.setState({ watchedIconColor: 'white' })
+
+  }
+  onFavouriteClick = () => {
+
+    const { favourite, movieId, userAction } = this.props;
+    if(favourite){
+      this.setState({ favouriteColor: '#00000080' })
+    }
+    else {
+      this.setState({ favouriteColor: '#FF1744' });
+    }
+
+    const reqData = {
+      movie: movieId,
+      action:'favourite',
+      value:!favourite
+    }
+
+    userAction(reqData);
+
   }
   onWatchLaterClick = () => {
     const { watchLaterColor } = this.state;
@@ -56,7 +81,7 @@ class MovieCard extends Component {
     return this.setState({ watchedIconColor: '#00000080' });
   }
   render(){
-    const { favoriteColor, watchLaterColor, watchedIconColor } = this.state;
+    const { favouriteColor, watchLaterColor, watchedIconColor } = this.state;
     const { poster, rating, title, genre } = this.props;
     return(
       <Grid item>
@@ -69,13 +94,13 @@ class MovieCard extends Component {
                   <div className="button-area">
                     <Grid container flex-direction="row" spacing={0}>
                       <Grid item>
-                        <Tooltip title="favorite">
+                        <Tooltip title="favourite">
                           <IconButton 
-                            aria-label="Add to favorites"
-                            onClick={this.onFavoriteClick}
+                            aria-label="Add to favourites"
+                            onClick={this.onFavouriteClick}
                               
                           >
-                            <i className="material-icons" style={{color: favoriteColor}}>favorite</i>
+                            <i className="material-icons" style={{color: favouriteColor}}>favorite</i>
                           </IconButton>
                         </Tooltip>
                       </Grid>
@@ -104,7 +129,7 @@ class MovieCard extends Component {
                 </div>
                 <div className="rating">
                   <p>{rating}</p>
-                  <i className="material-icons">grade</i>
+                  <i className="material-icons">star</i>
                 </div>
               </Card>
             </div>
@@ -127,7 +152,7 @@ class MovieCard extends Component {
     );
   }
 }
-export default MovieCard;
+export default connect(null,{userAction})(MovieCard)
 
 MovieCard.defaultProps = {
   genre: undefined
@@ -137,5 +162,8 @@ MovieCard.propTypes = {
   poster: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   rating: PropTypes.node.isRequired,
-  genre: PropTypes.string
+  genre: PropTypes.string,
+  watch_later: PropTypes.bool.isRequired,
+  watched: PropTypes.bool.isRequired,
+  favourite: PropTypes.bool.isRequired
 }

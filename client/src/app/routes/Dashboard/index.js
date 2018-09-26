@@ -2,14 +2,14 @@ import React,{ Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import {
-  fetchFavorite,
+  fetchFavourite,
   fetchPopular,
   fetchTrending,
   fetchWatched,
   fetchWatchLater
 } from 'actions/movieActions'
 import SearchResults from './components/SearchResults'
-import FavoriteMovies from './components/FavoriteMovies'
+import FavouriteMovies from './components/FavouriteMovies'
 import PopularMovies from './components/PopularMovies'
 import TrendingMovies from './components/TrendingMovies'
 import WatchedMovies from './components/WatchedMovies'
@@ -19,12 +19,12 @@ import WatchLater from './components/WatchLaterMovies'
 class Dashboard extends Component {
   componentWillMount(){
     const { 
-      fetchFavorite, fetchPopular, fetchTrending, fetchWatched, fetchWatchLater,
+      fetchFavourite, fetchPopular, fetchTrending, fetchWatched, fetchWatchLater,
       favPage, popPage, trePage, watchedPage, watchltr
     } = this.props;
     fetchPopular(popPage);
     fetchTrending(trePage);
-    fetchFavorite(favPage);
+    fetchFavourite(favPage);
     fetchWatched(watchedPage);
     fetchWatchLater(watchltr);
   }
@@ -34,7 +34,7 @@ class Dashboard extends Component {
         <SearchResults {...this.props} />
         <PopularMovies />
         <TrendingMovies />
-        <FavoriteMovies />
+        <FavouriteMovies />
         <WatchedMovies />
         <WatchLater />
       </div>
@@ -45,7 +45,7 @@ class Dashboard extends Component {
 Dashboard.propTypes = {
   searchScreen: PropTypes.bool.isRequired,
   searchLoading: PropTypes.bool.isRequired,
-  fetchFavorite: PropTypes.func.isRequired,
+  fetchFavourite: PropTypes.func.isRequired,
   fetchPopular: PropTypes.func.isRequired,
   fetchWatched: PropTypes.func.isRequired,
   fetchWatchLater: PropTypes.func.isRequired,
@@ -67,7 +67,7 @@ Dashboard.defaultProps = {
 const mapStateToProps = state => ({
   searchScreen: state.SearchLoading.searchScreen,
   searchLoading: state.SearchLoading.searchLoading,
-  favPage: state.Movies.favoriteCurrentPage,
+  favPage: state.Movies.favouriteCurrentPage,
   popPage: state.Movies.popularCurrentPage,
   trePage: state.Movies.trendingCurrentPage,
   watchedPage: state.Movies.watchedCurrentPage,
@@ -75,7 +75,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-  fetchFavorite,
+  fetchFavourite,
   fetchPopular,
   fetchWatched,
   fetchWatchLater,

@@ -1,9 +1,10 @@
 import { 
-  FETCH_FAVORITE,
+  FETCH_FAVOURITE,
   FETCH_POPULAR,
   FETCH_TRENDING,
   FETCH_WATCHED,
-  FETCH_WATCHLATER
+  FETCH_WATCHLATER,
+  USER_ACTION
 } from 'actions/types';
 
 const initialState = {
@@ -13,8 +14,8 @@ const initialState = {
   trendingMovies:[],
   trendingCurrentPage:1,
   trendingTotalPage:1,
-  favoriteMovies:[],
-  favoriteCurrentPage:1,
+  favouriteMovies:[],
+  favouriteCurrentPage:1,
   favouriteTotalPage:0,
   watchlaterMovies:[],
   watchlaterCurrentPage:1,
@@ -27,12 +28,12 @@ const initialState = {
 export default function(state = initialState, action){
   switch (action.type) {
 
-    case FETCH_FAVORITE:
+    case FETCH_FAVOURITE:
       return {
         ...state,
-        favoriteMovies: action.payload.results,
+        favouriteMovies: action.payload.results,
         favouriteTotalPage: action.payload.total_pages,
-        favoriteCurrentPage: action.payload.current_page
+        favouriteCurrentPage: action.payload.current_page
       }
     case FETCH_POPULAR:
       return {
@@ -62,6 +63,13 @@ export default function(state = initialState, action){
         watchlaterTotalPage: action.payload.total_pages,
         watchlaterCurrentPage: action.payload.current_page
       }
+    case USER_ACTION:{
+      const nextState = {...state};
+      console.log(nextState);
+    }
+      
+
+    
   
     default:
       return state;
