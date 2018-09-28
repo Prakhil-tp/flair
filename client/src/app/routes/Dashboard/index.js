@@ -6,7 +6,8 @@ import {
   fetchPopular,
   fetchTrending,
   fetchWatched,
-  fetchWatchLater
+  fetchWatchLater,
+  fetchRecommend
 } from 'actions/movieActions'
 import SearchResults from './components/SearchResults'
 import FavouriteMovies from './components/FavouriteMovies'
@@ -14,14 +15,16 @@ import PopularMovies from './components/PopularMovies'
 import TrendingMovies from './components/TrendingMovies'
 import WatchedMovies from './components/WatchedMovies'
 import WatchLater from './components/WatchLaterMovies'
+import Recommendation from './components/Recommendation'
 
 
 class Dashboard extends Component {
   componentWillMount(){
     const { 
-      fetchFavourite, fetchPopular, fetchTrending, fetchWatched, fetchWatchLater,
-      favPage, popPage, trePage, watchedPage, watchltr
+      fetchFavourite, fetchPopular, fetchTrending, fetchWatched, fetchWatchLater, fetchRecommend,
+      favPage, popPage, trePage, watchedPage, watchltr,recPage
     } = this.props;
+    fetchRecommend(recPage);
     fetchPopular(popPage);
     fetchTrending(trePage);
     fetchFavourite(favPage);
@@ -32,6 +35,7 @@ class Dashboard extends Component {
     return(
       <div className="dashboard">
         <SearchResults {...this.props} />
+        <Recommendation />
         <PopularMovies />
         <TrendingMovies />
         <FavouriteMovies />
@@ -54,14 +58,16 @@ Dashboard.propTypes = {
   popPage: PropTypes.node,
   trePage: PropTypes.node,
   watchedPage: PropTypes.node,
-  watchltr: PropTypes.node
+  watchltr: PropTypes.node,
+  recPage: PropTypes.node
 };
 Dashboard.defaultProps = {
   favPage:1,
   popPage:1,
   trePage:1,
   watchedPage:1,
-  watchltr:1
+  watchltr:1,
+  recPage:1
 }
 
 const mapStateToProps = state => ({
@@ -72,6 +78,7 @@ const mapStateToProps = state => ({
   trePage: state.Movies.trendingCurrentPage,
   watchedPage: state.Movies.watchedCurrentPage,
   watchltr: state.Movies.watchlaterCurrentPage,
+  recPage: state.Movies.recommendedCurrentPage
 })
 
 const mapDispatchToProps = {
@@ -79,7 +86,8 @@ const mapDispatchToProps = {
   fetchPopular,
   fetchWatched,
   fetchWatchLater,
-  fetchTrending
+  fetchTrending,
+  fetchRecommend
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

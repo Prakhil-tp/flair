@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import { navSearch } from 'actions/navActions'
 import shortid from 'shortid'
 import CircularProgress from '@material-ui/core/CircularProgress'
+import Zoom from '@material-ui/core/Zoom';
 import MovieCard from 'components/MovieCard'
 import CardArea from 'components/CardArea'
 
@@ -17,7 +18,7 @@ class SearchResults extends Component {
     const { searchLoading, searchScreen, Movies } = this.props;
     if(searchScreen && searchLoading){
       return(
-        <CardArea isLoading title="SEARCH RESULTS">
+        <CardArea isLoading title="SEARCH RESULTS" changePage={this.changePage}>
           <CircularProgress 
             size={50} 
             thickness={2} 
@@ -36,15 +37,28 @@ class SearchResults extends Component {
                 title={Movie.title}
                 poster={Movie.poster}
                 genre={Movie.genres[0]&&Movie.genres[0].genre.toUpperCase()}
-                favorate={Movie.favorate}
+                favourite={Movie.favourite}
                 watch_later={Movie.watch_later}
                 watched={Movie.watched}
                 rating={Movie.rating}
+                allDetails={{movie:Movie}}
+                cardArea='search'
               />
               ))
           }
         </CardArea>
       );
+    }
+    else if(searchScreen && !searchLoading && Movies.length === 0){
+      return(
+        <CardArea title="SEARCH RESULTS" changePage={this.changePage} isLoading title="SEARCH RESULTS">
+          <Zoom in timeout={1000}>
+            <div className="no-search-results">
+              <h3>No matching movies found</h3>
+            </div>
+          </Zoom>
+        </CardArea>
+      )
     }
     return(<div />); 
   }

@@ -24,10 +24,12 @@ class WatchedMovies extends Component{
                 title={Movie.movie.title}
                 poster={Movie.movie.poster}
                 genre={Movie.movie.genres[0]&&Movie.movie.genres[0].genre.toUpperCase()}              
-                favorate={Movie.movie.favorate}
+                favourite={Movie.movie.favourite}
                 watch_later={Movie.movie.watch_later}
                 watched={Movie.movie.watched}
                 rating={Movie.movie.rating}
+                allDetails={Movie}
+                cardArea='watched'
               />
             ))
           }

@@ -5,6 +5,7 @@ import {
   FETCH_TRENDING,
   FETCH_WATCHED,
   FETCH_WATCHLATER, 
+  FETCH_RECOMMEND
 } from './types';
 
 const httpService = HttpService();
@@ -101,6 +102,26 @@ export const fetchTrending = nextPage => dispatch => {
     movies.current_page = nextPage;  
     dispatch({
     type:FETCH_TRENDING,
+    payload:movies
+    })
+  })
+  .catch(err => {
+    if (err.message !== undefined) 
+      console.log(err.message);
+  });
+}
+
+// get recommended movies
+export const fetchRecommend = nextPage => dispatch => {
+  const promise = httpService.get('/movies/recommendations/',{page:nextPage});
+  promise.then(res => {
+    if (!res.ok) res.text().then((text) => console.log(text));
+    return res.json();
+  })
+  .then(movies=>{
+    movies.current_page = nextPage;  
+    dispatch({
+    type:FETCH_RECOMMEND,
     payload:movies
     })
   })

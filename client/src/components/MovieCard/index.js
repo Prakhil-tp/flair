@@ -51,7 +51,7 @@ class MovieCard extends Component {
   }
   onFavouriteClick = () => {
 
-    const { favourite, movieId, userAction } = this.props;
+    const { favourite, userAction, allDetails, cardArea } = this.props;
     if(favourite){
       this.setState({ favouriteColor: '#00000080' })
     }
@@ -60,32 +60,60 @@ class MovieCard extends Component {
     }
 
     const reqData = {
-      movie: movieId,
-      action:'favourite',
-      value:!favourite
+      movie: allDetails.movie.id,
+      action_type:'favourite',
+      value:!favourite,
+      allDetails,
+      cardArea
     }
 
     userAction(reqData);
 
   }
   onWatchLaterClick = () => {
-    const { watchLaterColor } = this.state;
-    if(watchLaterColor === '#00000080') 
-      return this.setState({ watchLaterColor: '#3d5afe' });                         
-    return this.setState({ watchLaterColor: '#00000080' });
+    const { watch_later, userAction, allDetails, cardArea } = this.props;
+    if(watch_later){
+      this.setState({ watchLaterColor: '#00000080' })
+    }
+    else {
+      this.setState({ watchLaterColor: '#3d5afe' });
+    }
+
+    const reqData = {
+      movie: allDetails.movie.id,
+      action_type:'watch_later',
+      value:!watch_later,
+      allDetails,
+      cardArea
+    }
+
+    userAction(reqData);
   }
   onWatchedClick = () => {
-    const { watchedIconColor } = this.state;
-    if(watchedIconColor === '#00000080')
-      return this.setState({ watchedIconColor: 'white' })
-    return this.setState({ watchedIconColor: '#00000080' });
+    const { watched, userAction, allDetails, cardArea } = this.props;
+    if(watched){
+      this.setState({ watchedIconColor: '#00000080' })
+    }
+    else {
+      this.setState({ watchedIconColor: 'white' });
+    }
+
+    const reqData = {
+      movie: allDetails.movie.id,
+      action_type:'watched',
+      value:!watched,
+      allDetails,
+      cardArea
+    }
+
+    userAction(reqData);
   }
   render(){
     const { favouriteColor, watchLaterColor, watchedIconColor } = this.state;
-    const { poster, rating, title, genre } = this.props;
+    const { poster, rating, title, genre, slide } = this.props;
     return(
       <Grid item>
-        <Slide in direction="right" timeout={500}>
+        {/* <Slide in={false} direction="right" timeout={500}>  */}
           <div>
             <div className="movie-card">
               <Card style={styles.card}>
@@ -97,8 +125,7 @@ class MovieCard extends Component {
                         <Tooltip title="favourite">
                           <IconButton 
                             aria-label="Add to favourites"
-                            onClick={this.onFavouriteClick}
-                              
+                            onClick={this.onFavouriteClick}  
                           >
                             <i className="material-icons" style={{color: favouriteColor}}>favorite</i>
                           </IconButton>
@@ -147,7 +174,7 @@ class MovieCard extends Component {
                   <div />
             }
           </div>
-        </Slide>
+        {/* </Slide>  */}
       </Grid>
     );
   }
@@ -165,5 +192,6 @@ MovieCard.propTypes = {
   genre: PropTypes.string,
   watch_later: PropTypes.bool.isRequired,
   watched: PropTypes.bool.isRequired,
-  favourite: PropTypes.bool.isRequired
+  favourite: PropTypes.bool.isRequired,
+  cardArea: PropTypes.string.isRequired
 }

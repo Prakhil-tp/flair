@@ -11,7 +11,7 @@ body {
 @import './components/_cardarea.css';
 @import './components/_moviecard.css';
 @import './components/_navbar.css';
-
+@import './components/_search-results.css';
 
 /* pages */
 @import './pages/_dashboard.css';
