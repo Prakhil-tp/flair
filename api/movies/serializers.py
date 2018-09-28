@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Movie, MovieGenre, Cast, MovieWriter, Trending, UserList, Popular
+from .models import Movie, MovieGenre, Cast, MovieWriter, Trending, UserList, Popular,Rating, Recommendation
 
 
 
@@ -28,7 +28,7 @@ class CastSerializer(serializers.ModelSerializer):
 
 
 class MovieSerializer(serializers.ModelSerializer):
-
+    rating = serializers.SerializerMethodField()
     genres = serializers.SerializerMethodField()
     favourite = serializers.SerializerMethodField()
     watch_later = serializers.SerializerMethodField()
@@ -36,10 +36,11 @@ class MovieSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Movie
-        fields = ('id','title','genres','imdbID','poster','language','favourite','watch_later','watched')
-        read_only_fields =('title','genres','imdbID' ,'poster','language')
+        fields = ('id','title','genres','imdbID','poster','language','favourite','watch_later','watched','rating',)
+        read_only_fields =('title','genres','imdbID' ,'poster','language',)
 
     def get_genres(self, obj):
+        # return MovieGenre.objects.filter(movie=obj).values_list('genre', flat=True)
         qs = MovieGenre.objects.filter(movie=obj)
         return GenreSerializer(qs,many=True).data
 
@@ -60,6 +61,12 @@ class MovieSerializer(serializers.ModelSerializer):
         if result:
             return result[0].watched
         return False
+    
+    def get_rating(self,obj):
+        result = Rating.objects.filter(movie=obj)
+        if result:
+            return result[0].rating
+        return None
 
 
 class TrendingSerializer(serializers.ModelSerializer):
@@ -87,3 +94,11 @@ class UserListSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserList
         fields = ('movie',)
+
+class RecommendationSerializer(serializers.ModelSerializer):
+    movie =MovieSerializer()
+
+    class Meta:
+        model = Recommendation
+        fields = ('movie',)
+        

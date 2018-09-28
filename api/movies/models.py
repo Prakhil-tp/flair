@@ -22,6 +22,8 @@ class Movie(models.Model):
 
     def __str__(self):
         return self.title
+    class Meta:
+        ordering = ('title',)
 
 
 class MovieGenre(models.Model):
@@ -51,6 +53,7 @@ class Rating(models.Model):
 class Recommendation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    based_on = models.ForeignKey(Movie, on_delete=models.CASCADE,related_name="based_on_which_movie",null=True)
     strength = models.IntegerField(default=1)
 
 class UserList(models.Model):
@@ -74,9 +77,7 @@ class UserList(models.Model):
 #     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
 
 class Trending(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
 
 class Popular(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
