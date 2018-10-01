@@ -8,7 +8,7 @@ from .models import Trending, Movie, UserList, Popular,Recommendation
 from .tasks import run_scraping,run_scraping1,run_scraping2,run_scraping3,run_scraping4,run_scraping5,run_scraping6,make_recommendations
 from .paginations import StandardResultsSetPagination
 from .tasks import run_int_scraping2,run_int_scraping1,run_int_scraping3,run_int_scraping4,add_rating_for_movie
-
+import math
 #insert/
 @api_view(['GET', ])
 def get_movie_details(request):
@@ -118,21 +118,28 @@ class UserActionView(APIView):
             user_list = UserList.objects.create(user=request.user, movie=movie)
         action = request.data.get('action_type')
         value = request.data.get('value')
+        user_list_movies = None
         if action == 'favourite':
+            user_list_movies = UserList.objects.filter(user=request.user, favourite=True)
             if value:
                 print(movie_id)
                 make_recommendations(user_pk=request.user.pk,fav_movie_id=movie.id)#.delay(user=request.user.pk,fav_movie=movie.id)
             user_list.favourite=value
         elif action == 'watch_later':
+            user_list_movies = UserList.objects.filter(user=request.user, watch_later=True)
             user_list.watch_later = value
         else:
+            user_list_movies = UserList.objects.filter(user=request.user, watched=True)
             user_list.watched = value
         user_list.save()
         if value:
             movies_in_rec=Recommendation.objects.filter(movie=movie)
             if movies_in_rec:
                 movies_in_rec.delete()
-        return Response({'success':True})
+        count  = user_list_movies.count()
+        return Response({'success':True,
+                         'page_count': math.ceil(count/8) 
+                        })
 
 
 class MovieSearchView(generics.ListAPIView):
