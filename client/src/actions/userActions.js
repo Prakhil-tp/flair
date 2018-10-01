@@ -9,12 +9,13 @@ export const userAction = reqData => dispatch =>{
     if (!res.ok) res.text().then((text) => console.log(text));
     return res.json();
   })
-  .then(() =>
+  .then(resData =>{
+    reqData.total_page = resData.page_count;
     dispatch({
       type: USER_ACTION,
       payload: reqData
     })
-  )
+  })
   .catch(err => {
     if (err.message !== undefined) 
       console.log(err.message);

@@ -19,7 +19,7 @@ export const navSearch = searchData => dispatch => {
       })
     })
     .catch(err => {
-      if (typeof err.message !== 'undefined') 
+      if (err.message !== undefined) 
         console.log(err.message);
     });
 }

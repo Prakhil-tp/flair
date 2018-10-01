@@ -7,18 +7,29 @@ import MovieCard from 'components/MovieCard'
 import CardArea from 'components/CardArea'
 
 class WatchedMovies extends Component{
-  changePage = () => {
-    const { current_page, total_page, fetchWatched } = this.props;
-    if (current_page < total_page) 
+  nextPage = () => {
+    const { current_page, fetchWatched, total_page } = this.props;
+    if (current_page < total_page)
       fetchWatched(current_page+1);
   }
+  prevPage = () => {
+    const { current_page, fetchWatched } = this.props;
+    if (current_page > 1) 
+      fetchWatched(current_page-1)   
+  }
   render() {
-    const { Movies } = this.props;
+    const { Movies, total_page, current_page } = this.props;
     if(Movies.length > 0){
       return (
-        <CardArea title="WATCHED MOVIES" changePage={this.changePage}>
+        <CardArea
+          title="WATCHED MOVIES"
+          nextPage={this.nextPage}
+          prevPage={this.prevPage}
+          total_page={total_page}
+          current_page={current_page}
+        >
           {
-            Movies.map(Movie=>(
+            Movies.slice(0,8).map(Movie=>(
               <MovieCard
                 key={shortid.generate()}
                 title={Movie.movie.title}

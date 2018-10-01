@@ -7,18 +7,29 @@ import MovieCard from 'components/MovieCard'
 import CardArea from 'components/CardArea'
 
 class WatchLaterMovies extends Component{
-  changePage = () => {
-    const { current_page, total_page, fetchWatchLater } = this.props;
-    if (current_page < total_page) 
-    fetchWatchLater(current_page+1);
+  nextPage = () => {
+    const { current_page, fetchWatchLater, total_page } = this.props;
+    if (current_page < total_page)
+      fetchWatchLater(current_page+1);
+  }
+  prevPage = () => {
+    const { current_page, fetchWatchLater } = this.props;
+    if (current_page > 1) 
+      fetchWatchLater(current_page-1)   
   }
   render() {
-    const { Movies } = this.props;
+    const { Movies, total_page, current_page } = this.props;
     if(Movies.length > 0){
       return (
-        <CardArea title="WATCH LATER" changePage={this.changePage}>
+        <CardArea
+          title="WATCH LATER"
+          nextPage={this.nextPage}
+          prevPage={this.prevPage}
+          total_page={total_page}
+          current_page={current_page}
+        >
           {
-            Movies.map(Movie=>(
+            Movies.slice(0,8).map(Movie=>(
               <MovieCard
                 key={shortid.generate()}
                 title={Movie.movie.title}

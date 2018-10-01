@@ -7,19 +7,29 @@ import MovieCard from 'components/MovieCard'
 import CardArea from 'components/CardArea'
 
 class PopularMovies extends Component{
-  changePage = () => {
+  nextPage = () => {
     const { current_page, total_page, fetchPopular } = this.props;
     if (current_page < total_page) 
       fetchPopular(current_page+1);
-    
+  }
+  prevPage = () => {
+    const { current_page, fetchPopular } = this.props;
+    if (current_page > 1) 
+      fetchPopular(current_page-1)   
   }
   render() {
-    const { Movies } = this.props;
+    const { Movies, total_page, current_page } = this.props;
     if(Movies.length > 0){
       return (
-        <CardArea title="POPULAR MOVIES" changePage={this.changePage}>
+        <CardArea
+          title="POPULAR MOVIES"
+          nextPage={this.nextPage}
+          prevPage={this.prevPage}
+          total_page={total_page}
+          current_page={current_page}
+        >
           {
-            Movies.map(Movie=>(
+            Movies.slice(0,8).map(Movie=>(
               <MovieCard
                 key={shortid.generate()}
                 title={Movie.movie.title}

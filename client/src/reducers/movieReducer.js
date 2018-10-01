@@ -78,13 +78,16 @@ export default function(state = initialState, action){
       }
     case USER_ACTION:{
       const nextState = {...state};
-      const { allDetails, action_type, value, cardArea } = action.payload;
+      const { allDetails, action_type, value, cardArea, total_page } = action.payload;
       let newFavouriteMovies = nextState.favouriteMovies,
           newWatchLaterMovies = nextState.watchlaterMovies,
           newWatchedMovies = nextState.watchedMovies,
           newPopularMovies = nextState.popularMovies,
           newTrendingMovies = nextState.trendingMovies,
-          newRecommendedMovies = nextState.recommendedMovies;
+          newRecommendedMovies = nextState.recommendedMovies,
+          newFavouritePageCount = nextState.favouriteTotalPage,
+          newWatchLaterPageCount= nextState.watchlaterTotalPage,
+          newWatchedPageCount = nextState.watchedTotalPage;
 
 
       if(value){
@@ -104,8 +107,10 @@ export default function(state = initialState, action){
             const watchedIndex = newWatchedMovies.findIndex(movie => movie.movie.id === allDetails.movie.id);
             allDetails.movie.favourite = true;
             //push card to favourite cardArea if it's not exist there.
-            if(favouriteIndex === -1)
+            if(favouriteIndex === -1){
               newFavouriteMovies = newFavouriteMovies.concat(allDetails);
+              newFavouritePageCount = total_page;
+            }
 
             //Turn the favourite prop true of existed cardArea's Moviecard                                                         
             if(popularIndex !== -1){
@@ -135,8 +140,10 @@ export default function(state = initialState, action){
             const watchedIndex = newWatchedMovies.findIndex(movie => movie.movie.id === allDetails.movie.id);
             allDetails.movie.watch_later = true;
             //push card to watch_later cardArea if it's not exist there.
-            if(watchLaterIndex === -1)
+            if(watchLaterIndex === -1){
               newWatchLaterMovies = newWatchLaterMovies.concat(allDetails);
+              newWatchLaterPageCount = total_page;
+            }
 
             //Turn the watch_later prop true of existed cardArea's Moviecard                                             
             if(popularIndex !== -1){
@@ -167,8 +174,10 @@ export default function(state = initialState, action){
             const watchLaterIndex = newWatchLaterMovies.findIndex(movie => movie.movie.id === allDetails.movie.id);
             allDetails.movie.watched = true;
             //push card to watched cardArea if it's not exist there.
-            if(watchedIndex === -1)
+            if(watchedIndex === -1){
               newWatchedMovies = newWatchedMovies.concat(allDetails);
+              newWatchedPageCount = total_page;
+            }
 
             //Turn the watched prop true of existed cardArea's Moviecard                 
             if(popularIndex !== -1){
@@ -209,9 +218,10 @@ export default function(state = initialState, action){
               const watchedIndex = newWatchedMovies.findIndex(movie => movie.movie.id === allDetails.movie.id);
               allDetails.movie.favourite = false;
               //pop card from favourite cardArea if it's exist there
-              if(favouriteIndex !== -1)
+              if(favouriteIndex !== -1){
                 newFavouriteMovies = newFavouriteMovies.filter(movie => movie.movie.id !== allDetails.movie.id);
-              
+                newFavouritePageCount = total_page; 
+              }
               //Turn the favourite prop false of existed cardArea's Moviecard
               
               if(popularIndex !== -1){
@@ -242,9 +252,10 @@ export default function(state = initialState, action){
               const watchedIndex = newWatchedMovies.findIndex(movie => movie.movie.id === allDetails.movie.id);
               allDetails.movie.watch_later = false;
               //pop card from watch_later cardArea if it's exist there
-              if(watchLaterIndex !== -1)
+              if(watchLaterIndex !== -1){
                 newWatchLaterMovies = newWatchLaterMovies.filter(movie => movie.movie.id !== allDetails.movie.id);
-              
+                newWatchLaterPageCount = total_page; 
+              }
               //Turn the watch_later prop false of existed cardArea's Moviecard
               
               if(popularIndex !== -1){
@@ -275,9 +286,10 @@ export default function(state = initialState, action){
               const watchedIndex = newWatchedMovies.findIndex(movie => movie.movie.id === allDetails.movie.id);
               allDetails.movie.watched = false;
               //pop card from watched cardArea if it's exist there
-              if(watchedIndex !== -1)
+              if(watchedIndex !== -1){
                 newWatchedMovies = newWatchedMovies.filter(movie => movie.movie.id !== allDetails.movie.id);
-              
+                newWatchedPageCount = total_page;                 
+              }
               //Turn the watched prop false of existed cardArea's Moviecard
               
               if(popularIndex !== -1){
@@ -308,7 +320,10 @@ export default function(state = initialState, action){
         watchedMovies: newWatchedMovies,
         popularMovies: newPopularMovies,
         trendingMovies: newTrendingMovies,
-        recommendedMovies: newRecommendedMovies
+        recommendedMovies: newRecommendedMovies,
+        favouriteTotalPage: newFavouritePageCount,
+        watchlaterTotalPage: newWatchLaterPageCount,
+        watchedTotalPage: newWatchedPageCount
       })
       
       

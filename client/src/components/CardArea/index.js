@@ -1,9 +1,10 @@
 import React from 'react';
-import { Divider, Grid, Button } from '@material-ui/core';
+import { Divider} from '@material-ui/core';
 import PropTypes from 'prop-types';
+import CardContainer from './components/CardContainer';
 
 const CardArea = (props) => {
-  const { title, isLoading, children, changePage } = props;
+  const { title, isLoading, children, nextPage, total_page, current_page, prevPage} = props;
     return(
       <div className="main">
         <Divider />
@@ -12,33 +13,18 @@ const CardArea = (props) => {
         </div>
         {
           isLoading? 
-            (
-              <div className="loading-space">
-                {children}
-              </div>
-            )
+            (<div className="loading-space">{children}</div>)
           :
             (
-              <div className="card-space">
-                <Grid container flex-direction="row" spacing={8}>
-                  {children}
-                </Grid>
-                <Button 
-                  variant="fab" 
-                  style={{
-                    position:'absolute',
-                    bottom:'42%',
-                    right:'5%'
-                  }}
-                  onClick={changePage}
-                  color="primary"
-                >
-                  <i className="material-icons">arrow_right</i>
-                </Button>
-              </div>
-            )
+              <CardContainer
+                nextPage={nextPage}
+                prevPage={prevPage}
+                total_page={total_page}
+                current_page={current_page} 
+              >
+                {children}
+              </CardContainer>)
         }
-
         <Divider />
       </div>
     );  
@@ -54,5 +40,8 @@ CardArea.propTypes = {
   isLoading: PropTypes.bool,
   title: PropTypes.string,
   children: PropTypes.node.isRequired,
-  changePage: PropTypes.func.isRequired
+  nextPage: PropTypes.func.isRequired,
+  prevPage: PropTypes.func.isRequired,
+  total_page: PropTypes.node.isRequired,
+  current_page: PropTypes.node.isRequired
 };

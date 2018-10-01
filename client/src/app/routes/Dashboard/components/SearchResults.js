@@ -9,16 +9,29 @@ import MovieCard from 'components/MovieCard'
 import CardArea from 'components/CardArea'
 
 class SearchResults extends Component {
-  changePage = () => {
+  nextPage = () => {
     const { current_page, total_page, navSearch, search_key } = this.props;
     if (current_page < total_page) 
       navSearch({search:search_key, page:current_page+1})   
   }
+  prevPage = () => {
+    const { current_page, navSearch } = this.props;
+    if (current_page > 1) 
+      navSearch(current_page-1)   
+  }
   render(){
-    const { searchLoading, searchScreen, Movies } = this.props;
+    const { searchLoading, searchScreen, Movies, total_page, current_page } = this.props;
+
     if(searchScreen && searchLoading){
       return(
-        <CardArea isLoading title="SEARCH RESULTS" changePage={this.changePage}>
+        <CardArea 
+          isLoading
+          title="SEARCH RESULTS"
+          nextPage={this.nextPage}
+          prevPage={this.prevPage}
+          total_page={total_page}
+          current_page={current_page}
+        >
           <CircularProgress 
             size={50} 
             thickness={2} 
@@ -29,9 +42,14 @@ class SearchResults extends Component {
     }
     else if(searchScreen && !searchLoading && Movies.length > 0 ){
       return(
-        <CardArea title="SEARCH RESULTS" changePage={this.changePage}>
+        <CardArea
+          title="SEARCH RESULTS"
+          changePage={this.changePage}
+          total_page={total_page}
+          current_page={current_page}
+        >
           {
-            Movies.map(Movie=>(
+            Movies.slice(0,8).map(Movie=>(
               <MovieCard
                 key={shortid.generate()}
                 title={Movie.title}
@@ -51,7 +69,13 @@ class SearchResults extends Component {
     }
     else if(searchScreen && !searchLoading && Movies.length === 0){
       return(
-        <CardArea title="SEARCH RESULTS" changePage={this.changePage} isLoading title="SEARCH RESULTS">
+        <CardArea 
+          title="SEARCH RESULTS"
+          changePage={this.changePage}
+          isLoading
+          total_page={total_page}
+          current_page={current_page}
+        >
           <Zoom in timeout={1000}>
             <div className="no-search-results">
               <h3>No matching movies found</h3>
