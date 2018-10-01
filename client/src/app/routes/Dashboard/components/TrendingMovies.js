@@ -37,7 +37,7 @@ class TrendingMovies extends Component{
         </CardArea>
       )
     }
-    return <div />
+    return null;
   }
 }
 

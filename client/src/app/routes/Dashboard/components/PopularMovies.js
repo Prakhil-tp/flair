@@ -37,7 +37,7 @@ class PopularMovies extends Component{
         </CardArea>
       )
     }
-    return <div />
+    return null
   }
 }
 

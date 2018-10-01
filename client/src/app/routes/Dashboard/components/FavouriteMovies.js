@@ -39,7 +39,7 @@ class FavouriteMovies extends Component{
         </CardArea>
       )
     }
-    return <div />
+    return null
   }
 }
 

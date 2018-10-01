@@ -39,7 +39,7 @@ class Recommendation extends Component{
         </CardArea>
       )
     }
-    return <div />
+    return null
   }
 }
 

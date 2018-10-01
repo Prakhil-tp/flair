@@ -36,7 +36,7 @@ class WatchLaterMovies extends Component{
         </CardArea>
       )
     }
-    return <div />
+    return null;
   }
 }
 

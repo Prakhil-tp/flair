@@ -36,7 +36,7 @@ class WatchedMovies extends Component{
         </CardArea>
       )
     }
-    return <div />
+    return null;
   }
 }
 

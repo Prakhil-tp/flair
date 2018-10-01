@@ -60,7 +60,7 @@ class SearchResults extends Component {
         </CardArea>
       )
     }
-    return(<div />); 
+    return null; 
   }
 }
 
