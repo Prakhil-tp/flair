@@ -52,6 +52,18 @@
   font-size: 0.72rem;
   /* line-height: 0px; */
 }
+.on-hooq{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+.on-hooq .hooq-svg{
+  width: 50px;
+}
 
-
-
+.on-hooq .hooq-logo{
+  position: absolute;
+  right: 39%;
+  top: 8%;
+  width:11px;
+}

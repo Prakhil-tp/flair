@@ -10,6 +10,8 @@ import {
   Slide,
 } from '@material-ui/core';
 import { userAction } from 'actions/userActions'
+import onhooq from 'assets/bookmark.svg'
+import hooqLogo from 'assets/Hooq-logo-web.png'
 
 const styles = {
   media: {
@@ -157,6 +159,10 @@ class MovieCard extends Component {
                 <div className="rating">
                   <p>{rating}</p>
                   <i className="material-icons">star</i>
+                </div>
+                <div className="on-hooq">
+                  <img className="hooq-svg" src={onhooq} alt="on hooq" />
+                  <img className="hooq-logo" src={hooqLogo} alt="hooq" />
                 </div>
               </Card>
             </div>
