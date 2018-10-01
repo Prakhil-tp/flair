@@ -15,9 +15,9 @@ class SearchResults extends Component {
       navSearch({search:search_key, page:current_page+1})   
   }
   prevPage = () => {
-    const { current_page, navSearch } = this.props;
+    const { current_page, navSearch, search_key  } = this.props;
     if (current_page > 1) 
-      navSearch(current_page-1)   
+      navSearch({search:search_key, page:current_page-1})   
   }
   render(){
     const { searchLoading, searchScreen, Movies, total_page, current_page } = this.props;
@@ -44,7 +44,8 @@ class SearchResults extends Component {
       return(
         <CardArea
           title="SEARCH RESULTS"
-          changePage={this.changePage}
+          nextPage={this.nextPage}
+          prevPage={this.prevPage}
           total_page={total_page}
           current_page={current_page}
         >
@@ -71,7 +72,8 @@ class SearchResults extends Component {
       return(
         <CardArea 
           title="SEARCH RESULTS"
-          changePage={this.changePage}
+          nextPage={this.nextPage}
+          prevPage={this.prevPage}
           isLoading
           total_page={total_page}
           current_page={current_page}
