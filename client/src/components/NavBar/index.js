@@ -52,6 +52,7 @@ class NavBar extends Component {
     onClearDataClick = () =>{
       const { clearData } = this.props;
       clearData();
+      this.setState({ anchorEl: null });
     }
 
     render() {
