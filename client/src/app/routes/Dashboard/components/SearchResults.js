@@ -63,6 +63,7 @@ class SearchResults extends Component {
                 rating={Movie.rating}
                 allDetails={{movie:Movie}}
                 cardArea='search'
+                transition={Movie.movie.transition}
               />
               ))
           }

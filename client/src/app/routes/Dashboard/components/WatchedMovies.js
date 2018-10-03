@@ -42,6 +42,7 @@ class WatchedMovies extends Component{
                 rating={Movie.movie.rating}
                 allDetails={Movie}
                 cardArea='watched'
+                transition={Movie.movie.transition}
               />
             ))
           }

@@ -43,6 +43,7 @@ class Recommendation extends Component{
                 rating={Movie.movie.rating}
                 allDetails={Movie}
                 cardArea='recommendation'
+                transition={Movie.movie.transition}
               />
             ))
           }

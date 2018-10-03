@@ -42,6 +42,7 @@ class WatchLaterMovies extends Component{
                 rating={Movie.movie.rating}
                 allDetails={Movie}
                 cardArea='watch_later'
+                transition={Movie.movie.transition}
               />
             ))
           }

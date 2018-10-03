@@ -42,6 +42,7 @@ class PopularMovies extends Component{
                 rating={Movie.movie.rating}
                 allDetails={Movie}
                 cardArea='popular'
+                transition={Movie.movie.transition}
               />
               ))
           }

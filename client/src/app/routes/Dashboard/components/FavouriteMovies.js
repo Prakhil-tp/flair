@@ -45,6 +45,7 @@ class FavouriteMovies extends Component{
                 hooq={Movie.movie.on_hooq}
                 allDetails={Movie}
                 cardArea='favourite'
+                transition={Movie.movie.transition}
               />
             ))
           }

@@ -34,43 +34,51 @@ const initialState = {
 export default function(state = initialState, action){
   switch (action.type) {
 
-    case FETCH_FAVOURITE:
-      return {
+    case FETCH_FAVOURITE:{
+    action.payload.results.forEach(movie=>movie.movie.transition = 'slide')
+    return {
         ...state,
         favouriteMovies: action.payload.results,
         favouriteTotalPage: action.payload.total_pages,
         favouriteCurrentPage: action.payload.current_page
       }
-    case FETCH_POPULAR:
+    }
+    case FETCH_POPULAR:{
+    action.payload.results.forEach(movie=>movie.movie.transition = 'slide')
       return {
         ...state,
         popularMovies: action.payload.results,
         popularTotalPage: action.payload.total_pages,
         popularCurrentPage: action.payload.current_page
       }
+    }
     case FETCH_TRENDING:
-      return {
+    action.payload.results.forEach(movie=>movie.movie.transition = 'slide')
+    return {
         ...state,
         trendingMovies: action.payload.results,
         trendingTotalPage: action.payload.total_pages,
         trendingCurrentPage: action.payload.current_page
       }
     case FETCH_WATCHED:
-      return {
+    action.payload.results.forEach(movie=>movie.movie.transition = 'slide')
+    return {
         ...state,
         watchedMovies: action.payload.results,
         watchedTotalPage: action.payload.total_pages,
         watchedCurrentPage: action.payload.current_page
       }
     case FETCH_WATCHLATER:
-      return {
+    action.payload.results.forEach(movie=>movie.movie.transition = 'slide')
+    return {
         ...state,
         watchlaterMovies: action.payload.results,
         watchlaterTotalPage: action.payload.total_pages,
         watchlaterCurrentPage: action.payload.current_page
       }
     case FETCH_RECOMMEND:
-      return {
+    action.payload.results.forEach(movie=>movie.movie.transition = 'slide')
+    return {
         ...state,
         recommendedMovies: action.payload.results,
         recommendedTotalPage: action.payload.total_pages,
@@ -108,6 +116,12 @@ export default function(state = initialState, action){
           newWatchLaterPageCount= nextState.watchlaterTotalPage,
           newWatchedPageCount = nextState.watchedTotalPage;
 
+          newFavouriteMovies.forEach(movie=>movie.movie.transition = 'nothing');
+          newWatchLaterMovies.forEach(movie=>movie.movie.transition = 'nothing');
+          newWatchedMovies.forEach(movie=>movie.movie.transition = 'nothing');
+          newPopularMovies.forEach(movie=>movie.movie.transition = 'nothing');
+          newTrendingMovies.forEach(movie=>movie.movie.transition = 'nothing');
+          newRecommendedMovies.forEach(movie=>movie.movie.transition = 'nothing');
 
       if(value){
 

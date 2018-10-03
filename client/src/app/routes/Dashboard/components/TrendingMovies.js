@@ -43,6 +43,7 @@ class TrendingMovies extends Component{
                 hooq={Movie.movie.on_hooq}
                 allDetails={Movie}
                 cardArea='trending'
+                transition={Movie.movie.transition}
               />
             ))
           }
