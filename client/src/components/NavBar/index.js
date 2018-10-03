@@ -4,6 +4,8 @@ import {
     AppBar,
     Toolbar,
     Avatar,
+    Menu,
+    MenuItem
 } from '@material-ui/core'
 import PropTypes from 'prop-types'
 import { isMobile } from 'react-device-detect'
@@ -11,14 +13,14 @@ import SearchBar from 'material-ui-search-bar'
 import avatar from 'assets/images/avatar2.jpg'
 import logo from 'assets/flairLogo.png'
 import { changeScreen, changeLoading, navSearch } from 'actions/navActions'
-
-
+import { clearData } from 'actions/userActions'
 
 class NavBar extends Component {
     constructor(props){
 			super(props);
 			this.state = {
-				search:'',
+        search:'',
+        anchorEl: null
 			}
     }
 
@@ -41,10 +43,22 @@ class NavBar extends Component {
       this.setState({ search: value });
     }
 
+    //handle menu close 
+    handleClose = () => {
+      this.setState({ anchorEl: null });
+    };
+
+    //clear data
+    onClearDataClick = () =>{
+      const { clearData } = this.props;
+      clearData();
+    }
 
     render() {
       const {  changeScreen, changeLoading } = this.props;
-      const { search } = this.state;
+      const { search, anchorEl } = this.state;
+      const menuOpen = Boolean(anchorEl);
+
       return (	
         <AppBar position="fixed">
           <Toolbar>
@@ -78,7 +92,24 @@ class NavBar extends Component {
                 <div />
             }
             <div style={{flexGrow: 1}} />
-            <Avatar alt="Remy Sharp" src={avatar} />
+            <Avatar alt="Remy Sharp" src={avatar} onClick={e=>this.setState({anchorEl: e.currentTarget})} />
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={menuOpen}
+              onClose={this.handleClose}
+            >
+              <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+              <MenuItem onClick={this.onClearDataClick}>Clear data</MenuItem>
+            </Menu>
           </Toolbar>  
         </AppBar>
         );
@@ -87,7 +118,7 @@ class NavBar extends Component {
 
 
 
-const mapDispatchToProps = { navSearch, changeLoading, changeScreen };
+const mapDispatchToProps = { navSearch, changeLoading, changeScreen, clearData };
 
 export default connect(null,mapDispatchToProps)(NavBar);
 
@@ -96,4 +127,5 @@ NavBar.propTypes = {
   changeScreen: PropTypes.func.isRequired,
   changeLoading: PropTypes.func.isRequired,
   navSearch: PropTypes.func.isRequired,
+  clearData: PropTypes.func.isRequired,
 };

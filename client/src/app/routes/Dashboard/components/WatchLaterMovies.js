@@ -38,6 +38,7 @@ class WatchLaterMovies extends Component{
                 favourite={Movie.movie.favourite}
                 watch_later={Movie.movie.watch_later}
                 watched={Movie.movie.watched}
+                hooq={Movie.movie.on_hooq}
                 rating={Movie.movie.rating}
                 allDetails={Movie}
                 cardArea='watch_later'

@@ -14,7 +14,7 @@ export const FETCH_RECOMMEND = 'FETCH_RECOMMEND'
 
 // User Actions
 export const USER_ACTION = 'USER_ACTION'
-
+export const CLEAR_DATA = 'CLEAR_DATA'
 
 
 

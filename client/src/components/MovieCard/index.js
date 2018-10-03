@@ -112,7 +112,7 @@ class MovieCard extends Component {
   }
   render(){
     const { favouriteColor, watchLaterColor, watchedIconColor } = this.state;
-    const { poster, rating, title, genre, slide } = this.props;
+    const { poster, rating, title, genre, slide, hooq } = this.props;
     return(
       <Grid item>
         {/* <Slide in={false} direction="right" timeout={500}>  */}
@@ -160,10 +160,18 @@ class MovieCard extends Component {
                   <p>{rating}</p>
                   <i className="material-icons">star</i>
                 </div>
-                <div className="on-hooq">
-                  <img className="hooq-svg" src={onhooq} alt="on hooq" />
-                  <img className="hooq-logo" src={hooqLogo} alt="hooq" />
-                </div>
+                {
+                  hooq?
+                  (
+                    <div className="on-hooq">
+                      <img className="hooq-svg" src={onhooq} alt="on hooq" />
+                      <img className="hooq-logo" src={hooqLogo} alt="hooq" />
+                    </div>
+                  )
+                  :
+                    null
+                }
+                
               </Card>
             </div>
             <div className="card-content">
@@ -199,5 +207,6 @@ MovieCard.propTypes = {
   watch_later: PropTypes.bool.isRequired,
   watched: PropTypes.bool.isRequired,
   favourite: PropTypes.bool.isRequired,
-  cardArea: PropTypes.string.isRequired
+  cardArea: PropTypes.string.isRequired,
+  hooq: PropTypes.bool.isRequired
 }

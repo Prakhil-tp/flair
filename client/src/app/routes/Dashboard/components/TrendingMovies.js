@@ -40,6 +40,7 @@ class TrendingMovies extends Component{
                 watch_later={Movie.movie.watch_later}
                 watched={Movie.movie.watched}
                 rating={Movie.movie.rating}
+                hooq={Movie.movie.on_hooq}
                 allDetails={Movie}
                 cardArea='trending'
               />

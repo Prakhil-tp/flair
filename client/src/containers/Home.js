@@ -9,10 +9,13 @@ export class Home extends Component {
   componentWillMount(){
     const data ={
       "username":"don",
-      "password":"don123"
+      "password":"code12345"
     }
     const promise = httpService.post('/token/',data);
-    promise.then(res=>res.json())
+    promise.then(res => {
+      if (!res.ok) res.text().then((text) => console.log(text));
+      return res.json();
+    })
     .then(resData=>{
       LocalStorageService('set','token',resData.token)
     })

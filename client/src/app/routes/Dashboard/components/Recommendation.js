@@ -38,6 +38,7 @@ class Recommendation extends Component{
                 genre={Movie.movie.genres[0]&&Movie.movie.genres[0].genre.toUpperCase()}              
                 favourite={Movie.movie.favourite}
                 watch_later={Movie.movie.watch_later}
+                hooq={Movie.movie.on_hooq}
                 watched={Movie.movie.watched}
                 rating={Movie.movie.rating}
                 allDetails={Movie}

@@ -15,6 +15,8 @@
   margin-block-start: 8px;
   margin-block-end: 0px;
 }
+
+/* genre tag */
 .movie-genre{
   background: #000;
   border-radius: 25px;
@@ -30,6 +32,8 @@
   font-weight: 300;
   font-family: 'Roboto', sans-serif;
 }
+
+/* rating tag */
 .rating{
   position: absolute;
   top:2%;
@@ -52,6 +56,8 @@
   font-size: 0.72rem;
   /* line-height: 0px; */
 }
+
+/* on hooq tag */
 .on-hooq{
   position: absolute;
   top: 0px;
@@ -60,10 +66,9 @@
 .on-hooq .hooq-svg{
   width: 50px;
 }
-
 .on-hooq .hooq-logo{
   position: absolute;
-  right: 39%;
+  right: 39.1%;
   top: 8%;
-  width:11px;
+  width:10px;
 }

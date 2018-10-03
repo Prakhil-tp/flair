@@ -59,6 +59,7 @@ class SearchResults extends Component {
                 favourite={Movie.favourite}
                 watch_later={Movie.watch_later}
                 watched={Movie.watched}
+                hooq={Movie.on_hooq}
                 rating={Movie.rating}
                 allDetails={{movie:Movie}}
                 cardArea='search'

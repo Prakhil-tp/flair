@@ -5,8 +5,8 @@ import {
   FETCH_WATCHED,
   FETCH_WATCHLATER,
   USER_ACTION,
-  FETCH_RECOMMEND 
-
+  FETCH_RECOMMEND,
+  CLEAR_DATA
 } from 'actions/types';
 
 const initialState = {
@@ -76,6 +76,25 @@ export default function(state = initialState, action){
         recommendedTotalPage: action.payload.total_pages,
         recommendedCurrentPage: action.payload.current_page
       }
+    case CLEAR_DATA:
+      if(action.payload.success){
+        return {
+          ...state,
+          favouriteMovies:[],
+          favouriteCurrentPage:1,
+          favouriteTotalPage:0,
+          watchlaterMovies:[],
+          watchlaterCurrentPage:1,
+          watchlaterTotalPage:0,
+          watchedMovies:[],
+          watchedCurrentPage:1,
+          watchedTotalPage:0,
+          recommendedMovies:[],
+          recommendedCurrentPage:1,
+          recommendedTotalPage:0
+        }
+      }
+      return null
     case USER_ACTION:{
       const nextState = {...state};
       const { allDetails, action_type, value, cardArea, total_page } = action.payload;
