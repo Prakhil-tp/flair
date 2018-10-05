@@ -25,9 +25,9 @@ class NavBar extends Component {
     }
 
     //runs when spacekey press
-    onKeyPress = (event) => {
-      if(event.key === ' ') this.handleSearch();
-    }
+    // onKeyPress = (event) => {
+    //   if(event.key === ' ') this.handleSearch();
+    // }
     
 		handleSearch = () => {
       const { search } = this.state;
@@ -41,6 +41,7 @@ class NavBar extends Component {
     //handle text value changes
     handleValueChange = (value) => {
       this.setState({ search: value });
+      this.handleSearch();
     }
 
     //handle menu close 
@@ -79,7 +80,7 @@ class NavBar extends Component {
                   value={search}
                   onChange={this.handleValueChange}
                   onRequestSearch={this.handleSearch}
-                  onKeyDown={this.onKeyPress}
+                  // onKeyDown={this.onKeyPress}
                   placeholder='Start by searching for your favourite movie'
                   style={{
                     margin: '0 auto',
